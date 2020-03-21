@@ -5,16 +5,16 @@ module.exports = {
   buildDir: resolve(__dirname, '.nuxt'),
   srcDir: __dirname,
   render: {
-    resourceHints: false
+    resourceHints: false,
   },
   modules: [
     { handler: require('@nuxtjs/tailwindcss') },
-    { handler: require('../') }
+    { handler: require('../') },
   ],
   breaky: {
-    enabled: true
+    enabled: true,
   },
   tailwindcss: {
-    exposeConfig: true
-  }
+    exposeConfig: true,
+  },
 }
