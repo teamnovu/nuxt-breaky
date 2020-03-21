@@ -1,5 +1,6 @@
 <template>
   <div
+    v-show="!TOGGLE_ME_TO_HIDE_BREAKY"
     class="card text-xs fixed bottom-0 right-0 mb-6 mr-8 bg-blue-400 p-2 text-white z-50 shadow cursor-pointer antialiased"
     @click.stop="expanded = !expanded"
   >
@@ -68,6 +69,7 @@ export default {
 
   data() {
     return {
+      TOGGLE_ME_TO_HIDE_BREAKY: false,
       breakpoints: theme.screens,
       currentScreenWidth: window.innerWidth,
       currentBreakpoint: '',
