@@ -14,7 +14,11 @@
         />
         <!-- END Selected Panel -->
         <ul class="relative">
-          <li v-for="(bp, name, index) in breakpoints" :key="index" class="flex justify-between py-2 px-4">
+          <li
+            v-for="(bp, name, index) in breakpoints"
+            :key="index"
+            class="flex justify-between py-2 px-4"
+          >
             <span>{{ name }} </span>
             <span class="ml-5">{{ bp }}</span>
           </li>
@@ -24,7 +28,7 @@
 
     <div
       class="transition duration-300 text-center border-2 border-transparent py-2 px-4 rounded-full flex items-center"
-      :class="{'border-opacity-30': !expanded }"
+      :class="{ 'border-opacity-30': !expanded }"
     >
       <!-- Desktop -->
       <svg
@@ -36,7 +40,11 @@
         role="img"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 576 512"
-      ><path fill="rgba(255,255,255, 0.3)" d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z" />
+      >
+        <path
+          fill="rgba(255,255,255, 0.3)"
+          d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"
+        />
       </svg>
       <!-- END Desktop -->
       <!-- Mobile -->
@@ -49,7 +57,11 @@
         role="img"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 320 512"
-      ><path fill="rgba(255,255,255, 0.3)" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z" />
+      >
+        <path
+          fill="rgba(255,255,255, 0.3)"
+          d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
+        />
       </svg>
       <!-- END Mobile -->
       {{ currentBreakpoint }} - {{ currentScreenWidth }}px
@@ -107,15 +119,17 @@ export default {
       })
     },
 
-    foundBreakpoint () {
+    foundBreakpoint() {
       return this.sortedBreakpoints.findIndex(
-        key => this.mappedBreakpoints[key] >= this.currentScreenWidth
+        (key) => this.mappedBreakpoints[key] >= this.currentScreenWidth
       )
     },
 
-    selected () {
-      return this.sortedBreakpoints.findIndex(bp => bp === this.currentBreakpoint)
-    }
+    selected() {
+      return this.sortedBreakpoints.findIndex(
+        (bp) => bp === this.currentBreakpoint
+      )
+    },
   },
 
   mounted() {
@@ -153,8 +167,8 @@ export default {
 
       // set the found breakpoint
       this.currentBreakpoint = this.sortedBreakpoints[this.foundBreakpoint - 1]
-    }, 100)
-  }
+    }, 100),
+  },
 }
 </script>
 
@@ -164,7 +178,7 @@ export default {
 }
 
 .border-opacity-30 {
-  border-color: rgba(255,255,255, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .h-selected {
