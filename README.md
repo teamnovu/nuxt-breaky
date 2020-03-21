@@ -17,7 +17,7 @@ This package always shows you which one of tailwinds breakpoints is currently ac
 The plugin is only added when in development mode and does not influence your production build.
 
 ![Screenshot of the breakpoint indicator](./example/assets/img/design-1.jpeg "Breakpoint indicator")
-![Screenshot of the breakpoint indicator when hovered](./example/assets/img/design-2.jpeg "Breakpoint indicator when hovered")
+![Screenshot of the breakpoint indicator when clicked](./example/assets/img/design-2.jpeg "Breakpoint indicator when clicked")
 
 ## Setup
 
