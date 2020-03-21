@@ -44,6 +44,34 @@ yarn add --dev nuxt-breaky # or npm install --dev nuxt-breaky
 }
 ```
 
+## Usage
+
+The breaky module automatically adds the breaky plugin when run in `development` mode.
+No need to register or include it anywhere else.
+
+### Module Options
+
+You can add options to the breaky using both the module options and the Nuxt config way.
+
+```js
+{
+  buildModules: {
+    ['nuxt-breaky', { /* module options */ }]
+  },
+
+  breaky: {
+    /* module options */
+  }
+}
+```
+
+Available options are:
+
+| Option       	| Type    	| Default 	| Description                                                 	|
+|--------------	|---------	|---------	|-------------------------------------------------------------	|
+| enabled      	| Boolean 	| true    	| Enable/Disable breaky                                       	|
+| enableInProd 	| Boolean 	| false   	| Enable breaky in production (overrides the enabled option)  	|
+
 ## Development
 
 1. Clone this repository
