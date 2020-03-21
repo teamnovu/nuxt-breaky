@@ -15,7 +15,7 @@
 1. Add `nuxt-breaky` as a dev-dependency to your project
 
 ```bash
-yarn add --dev nuxt-breaky # or npm install --dev nuxt-breaky
+yarn add --dev nuxt-breaky # or npm install --save-dev nuxt-breaky
 ```
 
 2. Add `nuxt-breaky` to the `buildModules` section of `nuxt.config.js`
