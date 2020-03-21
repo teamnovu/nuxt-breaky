@@ -33,7 +33,7 @@
     >
       <!-- Desktop -->
       <svg
-        v-show="currentScreenWidth > 768"
+        v-show="currentScreenWidth > 1024"
         aria-hidden="true"
         focusable="false"
         data-icon="desktop"
@@ -50,7 +50,7 @@
       <!-- END Desktop -->
       <!-- Mobile -->
       <svg
-        v-show="currentScreenWidth <= 768"
+        v-show="currentScreenWidth <= 1024"
         aria-hidden="true"
         focusable="false"
         data-icon="mobile-alt"
