@@ -6,7 +6,7 @@
     @click.stop="!noExpand ? (expanded = !expanded) : null"
   >
     <TransitionExpand>
-      <div v-show="expanded" class="pt-4 pb-2 relative">
+      <div v-show="expanded" class="pt-2 pb-2 relative">
         <!-- Selected Panel -->
         <span
           v-show="foundBreakpoint !== 0"
@@ -192,16 +192,16 @@ export default {
       const currentBreakpointEl = this.$refs.breaky.querySelector(
         '.current-breakpoint'
       )
-      const w = currentBreakpointEl.clientWidth
-      const h = currentBreakpointEl.clientHeight
+      const w = this.$refs.breaky.clientWidth
+      const h = this.$refs.breaky.clientHeight
 
       const snapPoints = [
-        { x: w / 2 + 32, y: h / 2 + 24 },
-        { x: window.innerWidth - (w / 2 + 32) - 20, y: h / 2 + 24 },
-        { x: w / 2 + 32, y: window.innerHeight - (h / 2 + 24) - 20 },
+        { x: 32 + w / 2, y: 24 + h / 2 },
+        { x: window.innerWidth - w / 2 - 32, y: 24 + h / 2 },
+        { x: 32 + w / 2, y: window.innerHeight - h / 2 - 24 },
         {
-          x: window.innerWidth - (w / 2 + 32) - 20,
-          y: window.innerHeight - (h / 2 + 24) - 20,
+          x: window.innerWidth - w / 2 - 32,
+          y: window.innerHeight - h / 2 - 24,
         },
       ]
 
@@ -226,16 +226,48 @@ export default {
 
           const newX = snapPoints[closestIndex].x
           const newY = snapPoints[closestIndex].y
-          event.target.style.left = newX - w / 2 + 'px'
-          event.target.style.top = newY - h / 2 + 'px'
+
+          if (newX > window.innerWidth / 2) {
+            event.target.style.left = 'auto'
+            event.target.style.right = window.innerWidth - newX - w / 2 + 'px'
+          } else {
+            event.target.style.left = newX - w / 2 + 'px'
+            event.target.style.right = 'auto'
+          }
+
+          if (newY > window.innerHeight / 2) {
+            event.target.style.top = 'auto'
+            event.target.style.bottom = window.innerHeight - newY - h / 2 + 'px'
+          } else {
+            event.target.style.top = newY - h / 2 + 'px'
+            event.target.style.bottom = 'auto'
+          }
         },
 
         listeners: {
           move(event) {
-            const rect = interact.getElementRect(event.target)
+            const elW = event.target.clientWidth
+            const elH = event.target.clientHeight
+            const newX = event.pageX
+            const newY = event.pageY
 
-            event.target.style.left = event.pageX - rect.width / 2 + 'px'
-            event.target.style.top = event.pageY - rect.height / 2 + 'px'
+            if (newX > window.innerWidth / 2) {
+              event.target.style.left = 'auto'
+              event.target.style.right =
+                window.innerWidth - newX - elW / 2 + 'px'
+            } else {
+              event.target.style.left = newX - elW / 2 + 'px'
+              event.target.style.right = 'auto'
+            }
+
+            if (newY > window.innerHeight / 2) {
+              event.target.style.top = 'auto'
+              event.target.style.bottom =
+                window.innerHeight - newY - elH / 2 + 'px'
+            } else {
+              event.target.style.top = newY - elH / 2 + 'px'
+              event.target.style.bottom = 'auto'
+            }
           },
         },
       })
