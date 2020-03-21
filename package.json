@@ -2,21 +2,37 @@
   "engines": {
     "node": "10.x"
   },
-  "name": "breaky",
-  "version": "1.0.0",
-  "description": "My awe-inspiring Nuxt.js project",
+  "name": "nuxt-breaky",
+  "version": "0.1.0",
+  "description": "A nuxt module for working with Tailwind CSS",
   "author": "Nattha",
-  "private": true,
+  "homepage": "https://github.com/teamnovu/nuxt-breaky",
+  "repository": {
+    "type": "git",
+    "url": "github:teamnovu/nuxt-breaky"
+  },
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "vue",
+    "nuxt",
+    "tailwindcss",
+    "breakpoints",
+    "plugin"
+  ],
+  "main": "./dist/js/module.js",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
+    "build-npm": "mkdir -p ./dist/js && mkdir -p ./dist/components && cp ./plugins/module.js ./dist/js/ && cp ./plugins/plugin.js ./dist/js/ && cp ./components/Breaky.vue ./dist/components/",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/dotenv": "^1.4.0",
     "lodash": "^4.17.15",
     "nuxt": "^2.0.0"
   },

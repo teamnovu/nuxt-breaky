@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Breaky from '~/components/Breaky'
+import Breaky from '../components/Breaky'
 const BreakyCtor = Vue.extend(Breaky)
 
 const BreakyPlugin = {
