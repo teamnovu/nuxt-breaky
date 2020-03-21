@@ -52,10 +52,10 @@ export default {
     this.resizeHandler()
 
     window.addEventListener('resize', this.resizeHandler)
-  },
 
-  beforeDestroy () {
-    window.removeEventListener('resize', this.resizeHandler)
+    this.$on('hook:beforeDestroy', () => {
+      window.removeEventListener('resize', this.resizeHandler)
+    })
   },
 
   methods: {
