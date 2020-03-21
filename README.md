@@ -10,6 +10,15 @@
 
 [📖 **Release Notes**](./CHANGELOG.md)
 
+## Intro
+
+This package always shows you which one of tailwinds breakpoints is currently active and lets you check the breakpoints without leaving the browser.
+
+The plugin is only added when in development mode and does not influence your production build.
+
+![Screenshot of the breakpoint indicator](./example/assets/img/design-1.jpeg "Breakpoint indicator")
+![Screenshot of the breakpoint indicator when hovered](./example/assets/img/design-2.jpeg "Breakpoint indicator when hovered")
+
 ## Setup
 
 1. Add `nuxt-breaky` as a dev-dependency to your project
