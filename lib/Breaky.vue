@@ -1,5 +1,11 @@
 <template>
-  <div class="fixed bottom-0 right-0 mb-6 mr-8">
+  <div class="fixed bottom-0 right-0 mb-6 mr-8" @click.stop="expanded = !expanded">
+    <TransitionExpand>
+      <div v-show="expanded">
+        {{ breakpoints }}
+      </div>
+    </TransitionExpand>
+
     <span
       class="text-xs rounded-full px-6 py-2 bg-blue-400 text-white z-50 shadow-sm"
     >
@@ -10,14 +16,20 @@
 
 <script>
 import throttle from 'lodash/throttle'
+import TransitionExpand from './TransitionExpand'
 import { theme } from '~/tailwind.config'
 
 export default {
+  components: {
+    TransitionExpand
+  },
+
   data () {
     return {
       breakpoints: theme.screens,
+      currentScreenWidth: window.innerWidth,
       currentBreakpoint: '',
-      currentScreenWidth: window.innerWidth
+      expanded: false
     }
   },
 
