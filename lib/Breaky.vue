@@ -1,7 +1,9 @@
 <template>
-  <div class="fixed bottom-0 right-0 mb-4 mr-4">
-    <span class="text-xs rounded-lg px-3 py-2 bg-blue-400 text-white z-50">
-      {{ currentBreakpoint }}
+  <div class="fixed bottom-0 right-0 mb-6 mr-8">
+    <span
+      class="text-xs rounded-full px-6 py-2 bg-blue-400 text-white z-50 shadow-sm"
+    >
+      {{ currentBreakpoint }} - {{ currentScreenWidth }}px
     </span>
   </div>
 </template>
@@ -14,9 +16,11 @@ export default {
   data () {
     return {
       breakpoints: theme.screens,
-      currentBreakpoint: ''
+      currentBreakpoint: '',
+      currentScreenWidth: window.innerWidth
     }
   },
+
   computed: {
     /**
      * Convert the breakpoints to integers
@@ -24,11 +28,14 @@ export default {
      */
     mappedBreakpoints () {
       const mappedScreens = {}
+
       Object.keys(this.breakpoints).forEach(
         key => (mappedScreens[key] = parseInt(this.breakpoints[key]))
       )
+
       return mappedScreens
     },
+
     /**
      * Sort mapped breakpoints based on its values
      */
@@ -40,23 +47,28 @@ export default {
       })
     }
   },
+
   mounted () {
     this.resizeHandler()
+
     window.addEventListener('resize', this.resizeHandler)
   },
+
   beforeDestroy () {
     window.removeEventListener('resize', this.resizeHandler)
   },
+
   methods: {
     /**
      *  Evaluate the current breakpoint based on the
      *  browser screen width
      */
     resizeHandler: throttle(function () {
-      const screenWidth = window.innerWidth
+      this.currentScreenWidth = window.innerWidth
       const foundBreakpoint = this.sortedBreakpoints.findIndex(
-        key => this.mappedBreakpoints[key] >= screenWidth
+        key => this.mappedBreakpoints[key] >= this.currentScreenWidth
       )
+
       // check if the screen is smaller than the smallest
       // defined screen in the tailwind config
       if (foundBreakpoint === 0) {
@@ -64,12 +76,14 @@ export default {
           this.breakpoints[this.sortedBreakpoints[0]]
         }`)
       }
+
       // when no breakpoint has been found take the highest
       if (foundBreakpoint === -1) {
         return (this.currentBreakpoint = this.sortedBreakpoints[
           this.sortedBreakpoints.length - 1
         ])
       }
+
       // set the found breakpoint
       this.currentBreakpoint = this.sortedBreakpoints[foundBreakpoint - 1]
     }, 100)
