@@ -3,7 +3,7 @@
     "node": "10.x"
   },
   "name": "nuxt-breaky",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A nuxt module for working with Tailwind CSS",
   "author": "Nattha",
   "homepage": "https://github.com/teamnovu/nuxt-breaky",
