@@ -1,7 +1,7 @@
 <template>
   <div
     v-show="!TOGGLE_ME_TO_HIDE_BREAKY"
-    class="card text-xs fixed bottom-0 right-0 mb-6 mr-8 bg-blue-400 p-2 text-white z-50 shadow cursor-pointer antialiased"
+    class="card text-xs fixed bottom-0 right-0 mb-6 mr-8 bg-blue-400 p-2 text-white z-50 shadow cursor-pointer antialiased font-bold tracking-wide"
     @click.stop="expanded = !expanded"
   >
     <TransitionExpand>
@@ -18,6 +18,7 @@
             v-for="(bp, name, index) in breakpoints"
             :key="index"
             class="flex justify-between py-2 px-4"
+            :class="{ 'opacity-50': selected !== index }"
           >
             <span>{{ name }} </span>
             <span class="ml-5">{{ bp }}</span>
