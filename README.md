@@ -3,6 +3,7 @@
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
+
 <!-- [![Circle CI][circle-ci-src]][circle-ci-href] -->
 <!-- [![Codecov][codecov-src]][codecov-href] -->
 
@@ -16,8 +17,8 @@ This package always shows you which one of tailwinds breakpoints is currently ac
 
 The plugin is only added when in development mode and does not influence your production build.
 
-![Screenshot of the breakpoint indicator](./example/assets/img/design-1.jpeg "Breakpoint indicator")
-![Screenshot of the breakpoint indicator when clicked](./example/assets/img/design-2.jpeg "Breakpoint indicator when clicked")
+![Screenshot of the breakpoint indicator](./example/assets/img/design-1.jpeg 'Breakpoint indicator')
+![Screenshot of the breakpoint indicator when clicked](./example/assets/img/design-2.jpeg 'Breakpoint indicator when clicked')
 
 ## Setup
 
@@ -38,7 +39,12 @@ yarn add --dev nuxt-breaky # or npm install --save-dev nuxt-breaky
     'nuxt-breaky',
 
     // With options
-    ['nuxt-breaky', { /* module options */ }]
+    [
+      'nuxt-breaky',
+      {
+        /* module options */
+      }
+    ]
   ]
 }
 ```
@@ -76,10 +82,10 @@ You can add options to the breaky using both the module options and the Nuxt con
 
 Available options are:
 
-| Option       	| Type    	| Default 	| Description                                                 	|
-|--------------	|---------	|---------	|-------------------------------------------------------------	|
-| enabled      	| Boolean 	| true    	| Enable/Disable breaky                                       	|
-| enableInProd 	| Boolean 	| false   	| Enable breaky in production (overrides the enabled option)  	|
+| Option       | Type    | Default | Description                                                |
+| ------------ | ------- | ------- | ---------------------------------------------------------- |
+| enabled      | Boolean | true    | Enable/Disable breaky                                      |
+| enableInProd | Boolean | false   | Enable breaky in production (overrides the enabled option) |
 
 ## Development
 
@@ -94,17 +100,14 @@ Available options are:
 Copyright (c) Natthakit Khamso
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-breaky/latest.svg?style=flat-square
 [npm-version-href]: https://npmjs.com/package/nuxt-breaky
-
 [npm-downloads-src]: https://img.shields.io/npm/dt/nuxt-breaky.svg?style=flat-square
 [npm-downloads-href]: https://npmjs.com/package/nuxt-breaky
-
 [circle-ci-src]: https://img.shields.io/circleci/project/github/teamnovu/nuxt-breaky.svg?style=flat-square
 [circle-ci-href]: https://circleci.com/gh/teamnovu/nuxt-breaky
-
 [codecov-src]: https://img.shields.io/codecov/c/github/teamnovu/nuxt-breaky.svg?style=flat-square
 [codecov-href]: https://codecov.io/gh/teamnovu/nuxt-breaky
-
 [license-src]: https://img.shields.io/npm/l/nuxt-breaky.svg?style=flat-square
 [license-href]: https://npmjs.com/package/nuxt-breaky
