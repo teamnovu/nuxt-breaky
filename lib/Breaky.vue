@@ -132,7 +132,7 @@ export default {
      */
     foundBreakpoint() {
       return this.sortedBreakpoints.findIndex(
-        (key) => this.mappedBreakpoints[key] >= this.currentScreenWidth
+        (key) => this.mappedBreakpoints[key] > this.currentScreenWidth
       )
     },
 
