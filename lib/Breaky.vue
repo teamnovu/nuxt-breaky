@@ -6,7 +6,7 @@
     @click.stop="!noExpand ? (expanded = !expanded) : null"
   >
     <TransitionExpand>
-      <div v-show="expanded" class="pt-2 pb-2 relative">
+      <div v-show="expanded" class="pt-1 pb-2 relative">
         <!-- Selected Panel -->
         <span
           v-show="foundBreakpoint !== 0"
@@ -34,7 +34,7 @@
     >
       <!-- Desktop -->
       <svg
-        v-show="currentScreenWidth > 1024"
+        v-show="screenWidth > 1024"
         aria-hidden="true"
         focusable="false"
         data-icon="desktop"
@@ -51,7 +51,7 @@
       <!-- END Desktop -->
       <!-- Mobile -->
       <svg
-        v-show="currentScreenWidth <= 1024"
+        v-show="screenWidth <= 1024"
         aria-hidden="true"
         focusable="false"
         data-icon="mobile-alt"
@@ -66,7 +66,7 @@
         />
       </svg>
       <!-- END Mobile -->
-      {{ currentBreakpoint }} - {{ currentScreenWidth }}px
+      {{ currentBreakpoint }} - {{ screenWidth }}px
     </div>
   </div>
 </template>
@@ -93,10 +93,10 @@ export default {
     return {
       TOGGLE_ME_TO_HIDE_BREAKY: false,
       breakpoints: theme.screens,
-      currentScreenWidth: window.innerWidth,
-      currentBreakpoint: '',
       expanded: false,
       noExpand: false,
+      screenWidth: window.innerWidth,
+      screenHeight: window.innerHeight,
     }
   },
 
@@ -135,7 +135,7 @@ export default {
      */
     foundBreakpoint() {
       return this.sortedBreakpoints.findIndex(
-        (key) => this.mappedBreakpoints[key] > this.currentScreenWidth
+        (key) => this.mappedBreakpoints[key] > this.screenWidth
       )
     },
 
@@ -146,6 +146,25 @@ export default {
       return this.sortedBreakpoints.findIndex(
         (bp) => bp === this.currentBreakpoint
       )
+    },
+
+    /**
+     * Get the current active breakpoint
+     */
+    currentBreakpoint() {
+      // check if the screen is smaller than the smallest
+      // defined screen in the tailwind config
+      if (this.foundBreakpoint === 0) {
+        return `smaller than ${this.breakpoints[this.sortedBreakpoints[0]]}`
+      }
+
+      // when no breakpoint has been found take the highest
+      if (this.foundBreakpoint === -1) {
+        return this.sortedBreakpoints[this.sortedBreakpoints.length - 1]
+      }
+
+      // set the found breakpoint
+      return this.sortedBreakpoints[this.foundBreakpoint - 1]
     },
   },
 
@@ -158,7 +177,7 @@ export default {
       window.removeEventListener('resize', this.resizeHandler)
     })
 
-    this.$nextTick(this.initInteract)
+    this.initInteract()
   },
 
   methods: {
@@ -167,41 +186,23 @@ export default {
      *  browser screen width
      */
     resizeHandler: throttle(function() {
-      this.currentScreenWidth = window.innerWidth
+      this.screenWidth = window.innerWidth
+      this.screenHeight = window.innerHeight
 
-      // check if the screen is smaller than the smallest
-      // defined screen in the tailwind config
-      if (this.foundBreakpoint === 0) {
-        return (this.currentBreakpoint = `smaller than ${
-          this.breakpoints[this.sortedBreakpoints[0]]
-        }`)
-      }
-
-      // when no breakpoint has been found take the highest
-      if (this.foundBreakpoint === -1) {
-        return (this.currentBreakpoint = this.sortedBreakpoints[
-          this.sortedBreakpoints.length - 1
-        ])
-      }
-
-      // set the found breakpoint
-      this.currentBreakpoint = this.sortedBreakpoints[this.foundBreakpoint - 1]
+      this.initInteract()
     }, 100),
 
     initInteract() {
-      const currentBreakpointEl = this.$refs.breaky.querySelector(
-        '.current-breakpoint'
-      )
       const w = this.$refs.breaky.clientWidth
       const h = this.$refs.breaky.clientHeight
 
       const snapPoints = [
         { x: 32 + w / 2, y: 24 + h / 2 },
-        { x: window.innerWidth - w / 2 - 32, y: 24 + h / 2 },
-        { x: 32 + w / 2, y: window.innerHeight - h / 2 - 24 },
+        { x: this.screenWidth - w / 2 - 32, y: 24 + h / 2 },
+        { x: 32 + w / 2, y: this.screenHeight - h / 2 - 24 },
         {
-          x: window.innerWidth - w / 2 - 32,
-          y: window.innerHeight - h / 2 - 24,
+          x: this.screenWidth - w / 2 - 32,
+          y: this.screenHeight - h / 2 - 24,
         },
       ]
 
@@ -227,17 +228,17 @@ export default {
           const newX = snapPoints[closestIndex].x
           const newY = snapPoints[closestIndex].y
 
-          if (newX > window.innerWidth / 2) {
+          if (newX > this.screenWidth / 2) {
             event.target.style.left = 'auto'
-            event.target.style.right = window.innerWidth - newX - w / 2 + 'px'
+            event.target.style.right = this.screenWidth - newX - w / 2 + 'px'
           } else {
             event.target.style.left = newX - w / 2 + 'px'
             event.target.style.right = 'auto'
           }
 
-          if (newY > window.innerHeight / 2) {
+          if (newY > this.screenHeight / 2) {
             event.target.style.top = 'auto'
-            event.target.style.bottom = window.innerHeight - newY - h / 2 + 'px'
+            event.target.style.bottom = this.screenHeight - newY - h / 2 + 'px'
           } else {
             event.target.style.top = newY - h / 2 + 'px'
             event.target.style.bottom = 'auto'
@@ -245,25 +246,25 @@ export default {
         },
 
         listeners: {
-          move(event) {
+          move: (event) => {
             const elW = event.target.clientWidth
             const elH = event.target.clientHeight
             const newX = event.pageX
             const newY = event.pageY
 
-            if (newX > window.innerWidth / 2) {
+            if (newX > this.screenWidth / 2) {
               event.target.style.left = 'auto'
               event.target.style.right =
-                window.innerWidth - newX - elW / 2 + 'px'
+                this.screenWidth - newX - elW / 2 + 'px'
             } else {
               event.target.style.left = newX - elW / 2 + 'px'
               event.target.style.right = 'auto'
             }
 
-            if (newY > window.innerHeight / 2) {
+            if (newY > this.screenHeight / 2) {
               event.target.style.top = 'auto'
               event.target.style.bottom =
-                window.innerHeight - newY - elH / 2 + 'px'
+                this.screenHeight - newY - elH / 2 + 'px'
             } else {
               event.target.style.top = newY - elH / 2 + 'px'
               event.target.style.bottom = 'auto'
