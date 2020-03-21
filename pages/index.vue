@@ -5,17 +5,11 @@
       class="absolute inset-0 w-full h-full"
       frameborder="0"
     ></iframe>
-    <Breaky />
   </div>
 </template>
 
 <script>
-import Breaky from '~/components/Breaky'
-export default {
-  components: {
-    Breaky,
-  },
-}
+export default {}
 </script>
 
 <style lang="scss" scoped></style>
