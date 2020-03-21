@@ -7,12 +7,14 @@
 module.exports = {
   theme: {
     screens: {
+      xs: '320px',
       sm: '640px',
       md: '768px',
       lg: '1024px',
       xl: '1280px',
-      'monster-screen': '2160px',
-    },
+      'full-hd': '1080px',
+      '4k': '2160px'
+    }
   },
   variants: {},
   plugins: [],
