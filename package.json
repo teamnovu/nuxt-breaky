@@ -20,14 +20,15 @@
     "breakpoints",
     "plugin"
   ],
-  "main": "./dist/js/module.js",
+  "main": "./module.js",
   "files": [
-    "dist/*"
+    "module.js",
+    "plugins/plugin.js",
+    "components/Breaky.vue"
   ],
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "build-npm": "mkdir -p ./dist/js && mkdir -p ./dist/components && cp ./plugins/module.js ./dist/js/ && cp ./plugins/plugin.js ./dist/js/ && cp ./components/Breaky.vue ./dist/components/",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."

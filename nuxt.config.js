@@ -44,7 +44,7 @@ export default {
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
     [
-      '~/plugins/module',
+      '~/module',
       {
         enabled: true,
       },

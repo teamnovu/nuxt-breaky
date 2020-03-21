@@ -13,11 +13,11 @@ export default function nuxtBreaky(moduleOptions) {
 
   if (process.env.NODE_ENV === 'development' && enabled) {
     this.addPlugin({
-      src: resolve(__dirname, 'plugin.js'),
+      src: resolve(__dirname, 'plugins/plugin.js'),
       ssr: false,
     })
     console.info('Breaky plugin added')
   }
 }
 
-module.exports.meta = require('../package.json')
+module.exports.meta = require('./package.json')
