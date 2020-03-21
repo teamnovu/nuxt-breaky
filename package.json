@@ -1,12 +1,15 @@
 {
   "name": "nuxt-breaky",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "description": "Show Tailwind CSS Breakpoints in Nuxtjs",
   "repository": "teamnovu/nuxt-breaky",
   "license": "MIT",
   "contributors": [
     {
-      "name": "Natthakit Khamso"
+      "name": "Natthakit Khamso (@motion-work)"
+    },
+    {
+      "name": "Tom Diggelmann (@buffalom)"
     }
   ],
   "files": [
@@ -19,7 +22,10 @@
     "release": "yarn test && standard-version && git push --follow-tags && npm publish",
     "test": "yarn lint && jest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@nuxtjs/tailwindcss": "^1.4.0",
+    "lodash": "^4.17.15"
+  },
   "devDependencies": {
     "@babel/core": "latest",
     "@babel/preset-env": "latest",
@@ -31,7 +37,6 @@
     "babel-jest": "latest",
     "codecov": "latest",
     "eslint": "latest",
-    "husky": "latest",
     "jest": "latest",
     "nuxt-edge": "latest",
     "standard-version": "latest"

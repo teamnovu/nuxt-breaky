@@ -8,6 +8,13 @@ module.exports = {
     resourceHints: false
   },
   modules: [
+    { handler: require('@nuxtjs/tailwindcss') },
     { handler: require('../') }
-  ]
+  ],
+  breaky: {
+    enabled: true
+  },
+  tailwindcss: {
+    exposeConfig: true
+  }
 }
