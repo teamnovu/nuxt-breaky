@@ -13,8 +13,8 @@ module.exports = {
       lg: '1024px',
       xl: '1280px',
       'full-hd': '1920px',
-      '4k': '2160px'
-    }
+      '4k': '2160px',
+    },
   },
   variants: {},
   plugins: [],
