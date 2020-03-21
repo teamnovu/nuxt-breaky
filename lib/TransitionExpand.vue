@@ -2,17 +2,17 @@
 export default {
   name: 'TransitionExpand',
   functional: true,
-  render (createElement, context) {
+  render(createElement, context) {
     const data = {
       props: {
-        name: 'expand'
+        name: 'expand',
       },
       on: {
-        afterEnter (element) {
+        afterEnter(element) {
           // eslint-disable-next-line no-param-reassign
           element.style.height = 'auto'
         },
-        enter (element) {
+        enter(element) {
           const { width } = getComputedStyle(element)
           /* eslint-disable no-param-reassign */
           element.style.width = width
@@ -36,7 +36,7 @@ export default {
             element.style.height = height
           })
         },
-        leave (element) {
+        leave(element) {
           const { height } = getComputedStyle(element)
           // eslint-disable-next-line no-param-reassign
           element.style.height = height
@@ -48,11 +48,11 @@ export default {
             // eslint-disable-next-line no-param-reassign
             element.style.height = 0
           })
-        }
-      }
+        },
+      },
     }
     return createElement('transition', data, context.children)
-  }
+  },
 }
 </script>
 

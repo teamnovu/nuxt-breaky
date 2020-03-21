@@ -37,8 +37,11 @@
     "babel-jest": "latest",
     "codecov": "latest",
     "eslint": "latest",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "jest": "latest",
     "nuxt-edge": "latest",
+    "prettier": "^1.19.1",
     "standard-version": "latest"
   },
   "publishConfig": {

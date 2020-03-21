@@ -1,5 +1,8 @@
 <template>
-  <div class="fixed bottom-0 right-0 mb-6 mr-8" @click.stop="expanded = !expanded">
+  <div
+    class="fixed bottom-0 right-0 mb-6 mr-8"
+    @click.stop="expanded = !expanded"
+  >
     <TransitionExpand>
       <div v-show="expanded">
         {{ breakpoints }}
@@ -21,15 +24,15 @@ import { theme } from '~/tailwind.config'
 
 export default {
   components: {
-    TransitionExpand
+    TransitionExpand,
   },
 
-  data () {
+  data() {
     return {
       breakpoints: theme.screens,
       currentScreenWidth: window.innerWidth,
       currentBreakpoint: '',
-      expanded: false
+      expanded: false,
     }
   },
 
@@ -38,11 +41,11 @@ export default {
      * Convert the breakpoints to integers
      * example: 1024px => 1024
      */
-    mappedBreakpoints () {
+    mappedBreakpoints() {
       const mappedScreens = {}
 
       Object.keys(this.breakpoints).forEach(
-        key => (mappedScreens[key] = parseInt(this.breakpoints[key]))
+        (key) => (mappedScreens[key] = parseInt(this.breakpoints[key]))
       )
 
       return mappedScreens
@@ -51,16 +54,20 @@ export default {
     /**
      * Sort mapped breakpoints based on its values
      */
-    sortedBreakpoints () {
+    sortedBreakpoints() {
       return Object.keys(this.mappedBreakpoints).sort((a, b) => {
-        if (this.mappedBreakpoints[a] < this.mappedBreakpoints[b]) { return -1 }
-        if (this.mappedBreakpoints[a] > this.mappedBreakpoints[b]) { return 1 }
+        if (this.mappedBreakpoints[a] < this.mappedBreakpoints[b]) {
+          return -1
+        }
+        if (this.mappedBreakpoints[a] > this.mappedBreakpoints[b]) {
+          return 1
+        }
         return 0
       })
-    }
+    },
   },
 
-  mounted () {
+  mounted() {
     this.resizeHandler()
 
     window.addEventListener('resize', this.resizeHandler)
@@ -75,10 +82,10 @@ export default {
      *  Evaluate the current breakpoint based on the
      *  browser screen width
      */
-    resizeHandler: throttle(function () {
+    resizeHandler: throttle(function() {
       this.currentScreenWidth = window.innerWidth
       const foundBreakpoint = this.sortedBreakpoints.findIndex(
-        key => this.mappedBreakpoints[key] >= this.currentScreenWidth
+        (key) => this.mappedBreakpoints[key] >= this.currentScreenWidth
       )
 
       // check if the screen is smaller than the smallest
@@ -98,7 +105,7 @@ export default {
 
       // set the found breakpoint
       this.currentBreakpoint = this.sortedBreakpoints[foundBreakpoint - 1]
-    }, 100)
-  }
+    }, 100),
+  },
 }
 </script>
