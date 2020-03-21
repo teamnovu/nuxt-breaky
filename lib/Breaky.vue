@@ -79,6 +79,13 @@ export default {
     TransitionExpand,
   },
 
+  props: {
+    position: {
+      type: String,
+      default: 'bottom-right',
+    },
+  },
+
   data() {
     return {
       TOGGLE_ME_TO_HIDE_BREAKY: false,

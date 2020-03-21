@@ -13,6 +13,8 @@ module.exports = {
   ],
   breaky: {
     enabled: true,
+    enableInProd: false,
+    position: 'bottom-right',
   },
   tailwindcss: {
     exposeConfig: true,
