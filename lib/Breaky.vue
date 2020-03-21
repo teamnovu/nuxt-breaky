@@ -1,8 +1,9 @@
 <template>
   <div
     v-show="!TOGGLE_ME_TO_HIDE_BREAKY"
-    class="card text-xs fixed bottom-0 right-0 mb-6 mr-8 bg-indigo-500 p-2 text-white z-50 shadow cursor-pointer antialiased font-bold tracking-wide"
-    @click.stop="expanded = !expanded"
+    ref="breaky"
+    class="card text-xs fixed bg-indigo-500 p-2 text-white z-50 shadow cursor-pointer antialiased font-bold tracking-wide transition-all duration-100"
+    @click.stop="!noExpand ? (expanded = !expanded) : null"
   >
     <TransitionExpand>
       <div v-show="expanded" class="pt-4 pb-2 relative">
@@ -28,7 +29,7 @@
     </TransitionExpand>
 
     <div
-      class="transition duration-300 text-center border-2 border-transparent py-2 px-4 rounded-full flex items-center justify-between"
+      class="current-breakpoint transition duration-300 text-center border-2 border-transparent py-2 px-4 rounded-full flex items-center justify-between"
       :class="{ 'border-opacity-30': !expanded }"
     >
       <!-- Desktop -->
@@ -95,6 +96,7 @@ export default {
       currentScreenWidth: window.innerWidth,
       currentBreakpoint: '',
       expanded: false,
+      noExpand: false,
     }
   },
 
@@ -156,7 +158,7 @@ export default {
       window.removeEventListener('resize', this.resizeHandler)
     })
 
-    this.initInteract()
+    this.$nextTick(this.initInteract)
   },
 
   methods: {
@@ -187,58 +189,56 @@ export default {
     }, 100),
 
     initInteract() {
-      // target elements with the "draggable" class
-      interact('.card').draggable({
-        // enable inertial throwing
-        inertia: true,
-        // keep the element within the area of it's parent
-        modifiers: [
-          interact.modifiers.restrict({
-            restriction: 'self',
-            endOnly: true,
-          }),
-        ],
-        // enable autoScroll
-        autoScroll: true,
+      const currentBreakpointEl = this.$refs.breaky.querySelector(
+        '.current-breakpoint'
+      )
+      const w = currentBreakpointEl.clientWidth
+      const h = currentBreakpointEl.clientHeight
+
+      const snapPoints = [
+        { x: w / 2 + 32, y: h / 2 + 24 },
+        { x: window.innerWidth - (w / 2 + 32) - 20, y: h / 2 + 24 },
+        { x: w / 2 + 32, y: window.innerHeight - (h / 2 + 24) - 20 },
+        {
+          x: window.innerWidth - (w / 2 + 32) - 20,
+          y: window.innerHeight - (h / 2 + 24) - 20,
+        },
+      ]
+
+      interact(this.$refs.breaky).draggable({
+        onstart: (event) => {
+          this.noExpand = true
+          event.target.classList.remove('transition-all', 'duration-100')
+        },
+        onend: (event) => {
+          setTimeout(() => (this.noExpand = false), 0)
+          event.target.classList.add('transition-all', 'duration-100')
+
+          const distances = snapPoints.map((point) =>
+            Math.sqrt(
+              (event.pageX - point.x) ** 2 + (event.pageY - point.y) ** 2
+            )
+          )
+          const closest = [...distances].sort((a, b) =>
+            a > b ? 1 : a < b ? -1 : 0
+          )[0]
+          const closestIndex = distances.indexOf(closest)
+
+          const newX = snapPoints[closestIndex].x
+          const newY = snapPoints[closestIndex].y
+          event.target.style.left = newX - w / 2 + 'px'
+          event.target.style.top = newY - h / 2 + 'px'
+        },
 
         listeners: {
-          // call this function on every dragmove event
-          move: this.dragMoveListener,
+          move(event) {
+            const rect = interact.getElementRect(event.target)
 
-          // call this function on every dragend event
-          end(event) {
-            const textEl = event.target.querySelector('p')
-
-            textEl &&
-              (textEl.textContent =
-                'moved a distance of ' +
-                Math.sqrt(
-                  ((event.pageX - event.x0) ** 2 +
-                    (event.pageY - event.y0) ** 2) |
-                    0
-                ).toFixed(2) +
-                'px')
+            event.target.style.left = event.pageX - rect.width / 2 + 'px'
+            event.target.style.top = event.pageY - rect.height / 2 + 'px'
           },
         },
       })
-    },
-
-    /**
-     * Move the card
-     */
-    dragMoveListener(event) {
-      const target = event.target
-      // keep the dragged position in the data-x/data-y attributes
-      const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-      const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
-
-      // translate the element
-      target.style.webkitTransform = target.style.transform =
-        'translate(' + x + 'px, ' + y + 'px)'
-
-      // update the posiion attributes
-      target.setAttribute('data-x', x)
-      target.setAttribute('data-y', y)
     },
   },
 }
@@ -248,6 +248,9 @@ export default {
 .card {
   min-width: 160px;
   border-radius: 1.75rem;
+
+  touch-action: none;
+  user-select: none;
 }
 
 .border-opacity-30 {
