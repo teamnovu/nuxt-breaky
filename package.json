@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^1.4.0",
+    "interactjs": "^1.9.7",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
