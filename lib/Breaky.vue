@@ -1,19 +1,58 @@
 <template>
   <div
-    class="fixed bottom-0 right-0 mb-6 mr-8"
+    class="card text-xs fixed bottom-0 right-0 mb-6 mr-8 bg-blue-400 p-2 text-white z-50 shadow cursor-pointer antialiased"
     @click.stop="expanded = !expanded"
   >
     <TransitionExpand>
-      <div v-show="expanded">
-        {{ breakpoints }}
+      <div v-show="expanded" class="pt-4 pb-2 relative">
+        <!-- Selected Panel -->
+        <span
+          v-show="foundBreakpoint !== 0"
+          class="absolute h-selected w-full bg-selected rounded-lg ease-out transition-transform duration-200"
+          :style="{ transform: `translateY(calc(100% * ${selected}))` }"
+        />
+        <!-- END Selected Panel -->
+        <ul class="relative">
+          <li v-for="(bp, name, index) in breakpoints" :key="index" class="flex justify-between py-2 px-4">
+            <span>{{ name }} </span>
+            <span class="ml-5">{{ bp }}</span>
+          </li>
+        </ul>
       </div>
     </TransitionExpand>
 
-    <span
-      class="text-xs rounded-full px-6 py-2 bg-blue-400 text-white z-50 shadow-sm"
+    <div
+      class="transition duration-300 text-center border-2 border-transparent py-2 px-4 rounded-full flex items-center"
+      :class="{'border-opacity-30': !expanded }"
     >
+      <!-- Desktop -->
+      <svg
+        v-show="currentScreenWidth > 768"
+        aria-hidden="true"
+        focusable="false"
+        data-icon="desktop"
+        class="h-4 mr-3"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 576 512"
+      ><path fill="rgba(255,255,255, 0.3)" d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z" />
+      </svg>
+      <!-- END Desktop -->
+      <!-- Mobile -->
+      <svg
+        v-show="currentScreenWidth <= 768"
+        aria-hidden="true"
+        focusable="false"
+        data-icon="mobile-alt"
+        class="h-4 mr-3"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512"
+      ><path fill="rgba(255,255,255, 0.3)" d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z" />
+      </svg>
+      <!-- END Mobile -->
       {{ currentBreakpoint }} - {{ currentScreenWidth }}px
-    </span>
+    </div>
   </div>
 </template>
 
@@ -65,6 +104,16 @@ export default {
         return 0
       })
     },
+
+    foundBreakpoint () {
+      return this.sortedBreakpoints.findIndex(
+        key => this.mappedBreakpoints[key] >= this.currentScreenWidth
+      )
+    },
+
+    selected () {
+      return this.sortedBreakpoints.findIndex(bp => bp === this.currentBreakpoint)
+    }
   },
 
   mounted() {
@@ -84,28 +133,43 @@ export default {
      */
     resizeHandler: throttle(function() {
       this.currentScreenWidth = window.innerWidth
-      const foundBreakpoint = this.sortedBreakpoints.findIndex(
-        (key) => this.mappedBreakpoints[key] >= this.currentScreenWidth
-      )
 
       // check if the screen is smaller than the smallest
       // defined screen in the tailwind config
-      if (foundBreakpoint === 0) {
+      if (this.foundBreakpoint === 0) {
         return (this.currentBreakpoint = `smaller than ${
           this.breakpoints[this.sortedBreakpoints[0]]
         }`)
       }
 
       // when no breakpoint has been found take the highest
-      if (foundBreakpoint === -1) {
+      if (this.foundBreakpoint === -1) {
         return (this.currentBreakpoint = this.sortedBreakpoints[
           this.sortedBreakpoints.length - 1
         ])
       }
 
       // set the found breakpoint
-      this.currentBreakpoint = this.sortedBreakpoints[foundBreakpoint - 1]
-    }, 100),
-  },
+      this.currentBreakpoint = this.sortedBreakpoints[this.foundBreakpoint - 1]
+    }, 100)
+  }
 }
 </script>
+
+<style scoped>
+.card {
+  border-radius: 1.75rem;
+}
+
+.border-opacity-30 {
+  border-color: rgba(255,255,255, 0.3);
+}
+
+.h-selected {
+  height: 34px;
+}
+
+.bg-selected {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+</style>
