@@ -126,12 +126,18 @@ export default {
       })
     },
 
+    /**
+     * Get the index of the current breakpoint based on the screen width
+     */
     foundBreakpoint() {
       return this.sortedBreakpoints.findIndex(
         (key) => this.mappedBreakpoints[key] >= this.currentScreenWidth
       )
     },
 
+    /**
+     * Get the index of the current active breakpoint
+     */
     selected() {
       return this.sortedBreakpoints.findIndex(
         (bp) => bp === this.currentBreakpoint
