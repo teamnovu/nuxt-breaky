@@ -1,7 +1,7 @@
 <template>
   <div
     v-show="!TOGGLE_ME_TO_HIDE_BREAKY"
-    class="card text-xs fixed bottom-0 right-0 mb-6 mr-8 bg-blue-400 p-2 text-white z-50 shadow cursor-pointer antialiased font-bold tracking-wide"
+    class="card text-xs fixed bottom-0 right-0 mb-6 mr-8 bg-indigo-500 p-2 text-white z-50 shadow cursor-pointer antialiased font-bold tracking-wide"
     @click.stop="expanded = !expanded"
   >
     <TransitionExpand>
@@ -200,6 +200,6 @@ export default {
 }
 
 .bg-selected {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 </style>
