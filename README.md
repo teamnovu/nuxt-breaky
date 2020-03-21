@@ -2,8 +2,8 @@
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![Circle CI][circle-ci-src]][circle-ci-href]
-[![Codecov][codecov-src]][codecov-href]
+<!-- [![Circle CI][circle-ci-src]][circle-ci-href] -->
+<!-- [![Codecov][codecov-src]][codecov-href] -->
 [![License][license-src]][license-href]
 
 > Show Tailwind CSS Breakpoints in Nuxtjs
@@ -12,17 +12,19 @@
 
 ## Setup
 
-1. Add `nuxt-breaky` dependency to your project
+1. Add `nuxt-breaky` as a dev-dependency to your project
 
 ```bash
-yarn add nuxt-breaky # or npm install nuxt-breaky
+yarn add --dev nuxt-breaky # or npm install --dev nuxt-breaky
 ```
 
-2. Add `nuxt-breaky` to the `modules` section of `nuxt.config.js`
+2. Add `nuxt-breaky` to the `buildModules` section of `nuxt.config.js`
+
+> Use the `modules` section if you are using Nuxt older than `v2.9`. [More Info](https://nuxtjs.org/guide/modules/#build-only-modules)
 
 ```js
 {
-  modules: [
+  buildModules: [
     // Simple usage
     'nuxt-breaky',
 
@@ -32,11 +34,21 @@ yarn add nuxt-breaky # or npm install nuxt-breaky
 }
 ```
 
+3. Add `exposeConfig: true` to the `tailwindcss` section of `nuxt.config.js`
+
+```js
+{
+  tailwindcss: {
+    exposeConfig: true
+  }
+}
+```
+
 ## Development
 
 1. Clone this repository
-2. Install dependencies using `yarn install` or `npm install`
-3. Start development server using `npm run dev`
+2. Install dependencies using `yarn install`
+3. Start development server using `yarn dev`
 
 ## License
 
