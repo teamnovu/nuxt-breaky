@@ -9,7 +9,7 @@
 
 > Show Tailwind CSS Breakpoints in Nuxtjs
 
-[📖 **Release Notes**](./CHANGELOG.md)
+<!-- [📖 **Release Notes**](./CHANGELOG.md) -->
 
 ## Intro
 
