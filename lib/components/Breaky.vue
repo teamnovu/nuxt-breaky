@@ -356,7 +356,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import './assets/scss/mixins/color-scheme.scss';
+@import '../assets/scss/mixins/color-scheme.scss';
 
 .color-scheme-auto {
   /* Light mode */
