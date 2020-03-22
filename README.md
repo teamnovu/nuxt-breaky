@@ -104,12 +104,12 @@ Copyright (c) Natthakit Khamso
 <!-- Badges -->
 
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-breaky/latest.svg?style=flat-square
-[npm-version-href]: https://npmjs.com/package/nuxt-breaky
+[npm-version-href]: https://github.com/teamnovu/nuxt-breaky/releases
 [npm-downloads-src]: https://img.shields.io/npm/dt/nuxt-breaky.svg?style=flat-square
-[npm-downloads-href]: https://npmjs.com/package/nuxt-breaky
+[npm-downloads-href]: https://github.com/teamnovu/nuxt-breaky/releases
 [circle-ci-src]: https://img.shields.io/circleci/project/github/teamnovu/nuxt-breaky.svg?style=flat-square
 [circle-ci-href]: https://circleci.com/gh/teamnovu/nuxt-breaky
 [codecov-src]: https://img.shields.io/codecov/c/github/teamnovu/nuxt-breaky.svg?style=flat-square
 [codecov-href]: https://codecov.io/gh/teamnovu/nuxt-breaky
 [license-src]: https://img.shields.io/npm/l/nuxt-breaky.svg?style=flat-square
-[license-href]: https://npmjs.com/package/nuxt-breaky
+[license-href]: https://github.com/teamnovu/nuxt-breaky/blob/master/LICENSE
