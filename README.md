@@ -7,7 +7,7 @@
 <!-- [![Circle CI][circle-ci-src]][circle-ci-href] -->
 <!-- [![Codecov][codecov-src]][codecov-href] -->
 
-> Show Tailwind CSS Breakpoints in Nuxtjs
+> Show Tailwind CSS Breakpoints in Nuxtjs when using the [tailwindcss-module](https://github.com/nuxt-community/tailwindcss-module)
 
 <!-- [📖 **Release Notes**](./CHANGELOG.md) -->
 
@@ -15,9 +15,9 @@
 
 [DEMO](https://teamnovu.github.io/nuxt-breaky/)
 
-breaky helps you to develop your responsive designs faster. It reads your defined breakpoints within your Tailwind Config and shows the current active breakpoint based on your browser window width.
+breaky helps you to create your responsive designs faster. It extends the awesome [tailwindcss-module](https://github.com/nuxt-community/tailwindcss-module). breaky reads your defined breakpoints within your Tailwind Config and shows the current active breakpoint based on your browser window width.
 
-The plugin will only be loaded during development mode and does not influence your production build.
+The plugin will only be loaded during development mode and does not interfere your production build.
 
 ![Demo GIF of window resizing](./example/assets/img/resizing.gif 'Resizing Browser Window')
 ![Demo GIF of dragging](./example/assets/img/dragging.gif 'Dragging Card to Corners')
@@ -28,7 +28,9 @@ The plugin will only be loaded during development mode and does not influence yo
 1. Add `nuxt-breaky` as a dev-dependency to your project
 
 ```bash
-yarn add --dev nuxt-breaky # or npm install --save-dev nuxt-breaky
+yarn add nuxt-breaky --dev
+
+# or npm install nuxt-breaky --save-dev
 ```
 
 2. Add `nuxt-breaky` to the `buildModules` section of `nuxt.config.js`
