@@ -2,7 +2,11 @@
   <div
     v-show="!TOGGLE_ME_TO_HIDE_BREAKY"
     ref="breaky"
-    class="card text-xs fixed bg-indigo-500 p-2 text-white z-50 shadow cursor-pointer antialiased font-bold tracking-wide transition-all duration-100"
+    class="card text-xs fixed flex bg-indigo-500 p-2 text-white z-50 shadow cursor-pointer antialiased font-bold tracking-wide transition-all duration-100"
+    :class="{
+      'flex-col-reverse': currentPosition.includes('top'),
+      'flex-col': currentPosition.includes('bottom'),
+    }"
     @click.stop="!noExpand ? (expanded = !expanded) : null"
   >
     <TransitionExpand>
@@ -97,6 +101,7 @@ export default {
       noExpand: false,
       screenWidth: window.innerWidth,
       screenHeight: window.innerHeight,
+      currentPosition: this.startingPosition,
     }
   },
 
@@ -182,19 +187,25 @@ export default {
      * Get snap points based on screen size and offset
      */
     topLeft() {
-      return { x: this.offset.x, y: this.offset.y }
+      return { name: 'topLeft', x: this.offset.x, y: this.offset.y }
     },
     topRight() {
-      return { x: this.screenWidth - this.offset.x, y: this.offset.y }
+      return {
+        name: 'topRight',
+        x: this.screenWidth - this.offset.x,
+        y: this.offset.y,
+      }
     },
     bottomLeft() {
       return {
+        name: 'bottomLeft',
         x: this.offset.x,
         y: this.screenHeight - this.offset.y,
       }
     },
     bottomRight() {
       return {
+        name: 'bottomRight',
         x: this.screenWidth - this.offset.x,
         y: this.screenHeight - this.offset.y,
       }
@@ -279,10 +290,12 @@ export default {
       const closestIndex = distances.indexOf(closest)
 
       // get the closest snappoints coordinates
-      const closestX = this.snapPoints[closestIndex].x
-      const closestY = this.snapPoints[closestIndex].y
+      const closestSnapPoint = this.snapPoints[closestIndex]
+      const closestX = closestSnapPoint.x
+      const closestY = closestSnapPoint.y
+      const closestName = closestSnapPoint.name
 
-      return { x: closestX, y: closestY }
+      return { x: closestX, y: closestY, name: closestName }
     },
 
     /**
@@ -306,7 +319,11 @@ export default {
           event.target.classList.add('transition-all', 'duration-100')
 
           // get the closest snappoint
-          const { x, y } = this.getClosestSnapPoint(event.pageX, event.pageY)
+          const { x, y, name } = this.getClosestSnapPoint(
+            event.pageX,
+            event.pageY
+          )
+          this.currentPosition = name
 
           // update the breaky elements position
           this.updatePosition(event.target, x, y, w, h)
