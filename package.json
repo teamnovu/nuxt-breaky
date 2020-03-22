@@ -24,7 +24,7 @@
     "release:minor": "yarn test && yarn update:gh-pages && standard-version --release-as minor && git push --follow-tags && npm publish",
     "release:major": "yarn test && yarn update:gh-pages && standard-version --release-as major && git push --follow-tags && npm publish",
     "test": "yarn lint && jest",
-    "update:gh-pages": "yarn generate:gh-pages && git add . && git commit -am \"update gh-pages\" && git push && yarn deploy:gh-pages",
+    "update:gh-pages": "yarn generate:gh-pages && git add -A && git diff-index --quiet HEAD || git commit -m \"update gh-pages\" && git push && yarn deploy:gh-pages",
     "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate example",
     "deploy:gh-pages": "git subtree push --prefix example/dist origin gh-pages"
   },
