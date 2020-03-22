@@ -17,7 +17,7 @@
 
 breaky helps you to create your responsive designs faster. It extends the awesome [tailwindcss-module](https://github.com/nuxt-community/tailwindcss-module). breaky reads your defined breakpoints within your Tailwind Config and shows the current active breakpoint based on your browser window width.
 
-The plugin will only be loaded during development mode and does not interfere your production build.
+The plugin will only be loaded during development mode and does not interfere with your production build.
 
 ![Demo GIF of window resizing](./example/assets/img/resizing.gif 'Resizing Browser Window')
 ![Demo GIF of dragging](./example/assets/img/dragging.gif 'Dragging Card to Corners')
