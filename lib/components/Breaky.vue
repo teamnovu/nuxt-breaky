@@ -140,7 +140,7 @@ export default {
       // check if the screen is smaller than the smallest
       // defined screen in the tailwind config
       if (this.foundBreakpoint === 0) {
-        return `smaller than ${this.breakpoints[this.sortedBreakpoints[0]]}`
+        return `< ${this.breakpoints[this.sortedBreakpoints[0]]}`
       }
 
       // when no breakpoint has been found take the highest
