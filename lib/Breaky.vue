@@ -353,9 +353,17 @@ export default {
 /* Light mode */
 @media (prefers-color-scheme: light) {
   .card {
-    background-color: rgba(241, 241, 241, 0.8);
+    background-color: rgba(255, 255, 255, 0.7);
 
     @apply text-black;
+  }
+
+  .border-opacity-30 {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .bg-selected {
+    background-color: rgba(0, 0, 0, 0.15);
   }
 
   svg {
@@ -366,9 +374,17 @@ export default {
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   .card {
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0.8);
 
     @apply text-white;
+  }
+
+  .border-opacity-30 {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .bg-selected {
+    background-color: rgba(255, 255, 255, 0.2);
   }
 
   svg {
@@ -394,15 +410,7 @@ export default {
   }
 }
 
-.border-opacity-30 {
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
 .h-selected {
   height: 34px;
-}
-
-.bg-selected {
-  background-color: rgba(0, 0, 0, 0.15);
 }
 </style>
