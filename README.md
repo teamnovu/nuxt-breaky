@@ -1,9 +1,9 @@
 # nuxt-breaky
 
 [![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 
+<!-- [![npm downloads][npm-downloads-src]][npm-downloads-href] -->
 <!-- [![Circle CI][circle-ci-src]][circle-ci-href] -->
 <!-- [![Codecov][codecov-src]][codecov-href] -->
 
