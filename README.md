@@ -99,7 +99,7 @@ You can add options to the breaky using both the module options and the Nuxt con
 
 [MIT License](./LICENSE)
 
-Copyright (c) Natthakit Khamso
+Copyright (c) teamnovu
 
 <!-- Badges -->
 
