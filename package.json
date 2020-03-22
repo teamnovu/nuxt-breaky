@@ -1,6 +1,6 @@
 {
   "name": "nuxt-breaky",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "description": "Show Tailwind CSS Breakpoints in Nuxtjs",
   "repository": "teamnovu/nuxt-breaky",
   "license": "MIT",
