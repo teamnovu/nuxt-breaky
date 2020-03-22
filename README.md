@@ -67,6 +67,8 @@ yarn add nuxt-breaky --dev
 }
 ```
 
+NOTE: Please be aware this adds ~19.5KB (~3.5KB) to the client bundle size.
+
 ## Usage
 
 The breaky module automatically adds the breaky plugin when in `development` mode.
