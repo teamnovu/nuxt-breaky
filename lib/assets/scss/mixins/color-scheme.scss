@@ -1,0 +1,39 @@
+@mixin light-card {
+  .card {
+    background-color: rgba(255, 255, 255, 0.7);
+
+    @apply text-black;
+  }
+
+  .border-opacity-30 {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .bg-selected {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+
+  svg {
+    color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+@mixin dark-card {
+  .card {
+    background-color: rgba(0, 0, 0, 0.8);
+
+    @apply text-white;
+  }
+
+  .border-opacity-30 {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .bg-selected {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  svg {
+    color: rgba(255, 255, 255, 0.3);
+  }
+}
