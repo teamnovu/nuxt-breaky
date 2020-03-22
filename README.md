@@ -13,6 +13,8 @@
 
 ## Intro
 
+[DEMO](https://teamnovu.github.io/nuxt-breaky/)
+
 This package always shows you which one of tailwinds breakpoints is currently active and lets you check the breakpoints without leaving the browser.
 
 The plugin is only added when in development mode and does not influence your production build.
