@@ -101,6 +101,11 @@ You can pass options to the breaky using both the module options and the Nuxt co
 2. Install dependencies using `yarn install`
 3. Start development server using `yarn dev`
 
+### Release
+
+1. `yarn release:patch` (`minor` or `major`)
+2. `npm publish`
+
 ## License
 
 [MIT License](./LICENSE)
