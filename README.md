@@ -17,7 +17,7 @@
 
 breaky helps you to develop your responsive designs faster. It reads your defined breakpoints within your Tailwind Config and shows the current active breakpoint based on your browser window width.
 
-The plugin is only added when in development mode and does not influence your production build.
+The plugin will only be loaded during development mode and does not influence your production build.
 
 ![Demo GIF of window resizing](./example/assets/img/resizing.gif 'Breakpoint indicator')
 ![Demo GIF of dragging](./example/assets/img/dragging.gif 'Breakpoint indicator')
