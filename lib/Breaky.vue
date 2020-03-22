@@ -243,7 +243,7 @@ export default {
     }, 100),
 
     /**
-     *  Update the breaky elements poisition
+     *  Update the breaky elements position
      */
     updatePosition(target, x, y, w, h) {
       if (x > this.screenWidth / 2) {
@@ -263,6 +263,9 @@ export default {
       }
     },
 
+    /**
+     *  Get the closest snappoint to a coordinate
+     */
     getClosestSnapPoint(x, y) {
       // calculate distance to each snappoint
       const distances = this.snapPoints.map((point) =>
