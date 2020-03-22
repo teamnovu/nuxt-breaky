@@ -20,6 +20,9 @@
     "dev": "nuxt example",
     "lint": "eslint --ext .js,.vue example lib test",
     "release": "yarn test && yarn generate:gh-pages && standard-version && git push --follow-tags && yarn deploy:gh-pages && npm publish",
+    "release:patch": "yarn test && yarn generate:gh-pages && standard-version --release-as patch && git push --follow-tags && yarn deploy:gh-pages && npm publish",
+    "release:minor": "yarn test && yarn generate:gh-pages && standard-version --release-as minor && git push --follow-tags && yarn deploy:gh-pages && npm publish",
+    "release:major": "yarn test && yarn generate:gh-pages && standard-version --release-as major && git push --follow-tags && yarn deploy:gh-pages && npm publish",
     "test": "yarn lint && jest",
     "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate example",
     "deploy:gh-pages": "git subtree push --prefix example/dist origin gh-pages"
