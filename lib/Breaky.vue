@@ -83,7 +83,7 @@ export default {
   },
 
   props: {
-    position: {
+    startingPosition: {
       type: String,
       default: 'bottom-right',
     },
@@ -166,6 +166,56 @@ export default {
       // set the found breakpoint
       return this.sortedBreakpoints[this.foundBreakpoint - 1]
     },
+
+    /**
+     * Get the starting position converted from snake to camel case
+     */
+    startingPositionCamelCase() {
+      const snakeToCamel = (str) =>
+        str.replace(/([-_][a-z])/g, (group) =>
+          group
+            .toUpperCase()
+            .replace('-', '')
+            .replace('_', '')
+        )
+
+      return snakeToCamel(this.startingPosition)
+    },
+
+    /**
+     * Get the elements positioning offset
+     */
+    offset() {
+      return {
+        x: 32,
+        y: 24,
+      }
+    },
+
+    /**
+     * Get snap points based on screen size and offset
+     */
+    topLeft() {
+      return { x: this.offset.x, y: this.offset.y }
+    },
+    topRight() {
+      return { x: this.screenWidth - this.offset.x, y: this.offset.y }
+    },
+    bottomLeft() {
+      return {
+        x: this.offset.x,
+        y: this.screenHeight - this.offset.y,
+      }
+    },
+    bottomRight() {
+      return {
+        x: this.screenWidth - this.offset.x,
+        y: this.screenHeight - this.offset.y,
+      }
+    },
+    snapPoints() {
+      return [this.topLeft, this.topRight, this.bottomLeft, this.bottomRight]
+    },
   },
 
   mounted() {
@@ -192,84 +242,85 @@ export default {
       this.initInteract()
     }, 100),
 
+    /**
+     *  Update the breaky elements poisition
+     */
+    updatePosition(target, x, y, w, h) {
+      if (x > this.screenWidth / 2) {
+        target.style.left = 'auto'
+        target.style.right = this.screenWidth - x - w / 2 + 'px'
+      } else {
+        target.style.left = x - w / 2 + 'px'
+        target.style.right = 'auto'
+      }
+
+      if (y > this.screenHeight / 2) {
+        target.style.top = 'auto'
+        target.style.bottom = this.screenHeight - y - h / 2 + 'px'
+      } else {
+        target.style.top = y - h / 2 + 'px'
+        target.style.bottom = 'auto'
+      }
+    },
+
+    getClosestSnapPoint(x, y) {
+      // calculate distance to each snappoint
+      const distances = this.snapPoints.map((point) =>
+        Math.sqrt((x - point.x) ** 2 + (y - point.y) ** 2)
+      )
+
+      // get the shortest distance
+      const closest = [...distances].sort((a, b) =>
+        a > b ? 1 : a < b ? -1 : 0
+      )[0]
+      // get index of the shortest distance in order to get its coordinates
+      const closestIndex = distances.indexOf(closest)
+
+      // get the closest snappoints coordinates
+      const closestX = this.snapPoints[closestIndex].x
+      const closestY = this.snapPoints[closestIndex].y
+
+      return { x: closestX, y: closestY }
+    },
+
+    /**
+     *  Initialize the breaky element to be draggable
+     */
     initInteract() {
+      // get size of breaky element
       const w = this.$refs.breaky.clientWidth
       const h = this.$refs.breaky.clientHeight
 
-      const snapPoints = [
-        { x: 32 + w / 2, y: 24 + h / 2 },
-        { x: this.screenWidth - w / 2 - 32, y: 24 + h / 2 },
-        { x: 32 + w / 2, y: this.screenHeight - h / 2 - 24 },
-        {
-          x: this.screenWidth - w / 2 - 32,
-          y: this.screenHeight - h / 2 - 24,
-        },
-      ]
-
       interact(this.$refs.breaky).draggable({
         onstart: (event) => {
+          // prevent breaky from expanding and transitioning while dragging
           this.noExpand = true
           event.target.classList.remove('transition-all', 'duration-100')
         },
+
         onend: (event) => {
+          // allow breaky to expand and transition again
           setTimeout(() => (this.noExpand = false), 0)
           event.target.classList.add('transition-all', 'duration-100')
 
-          const distances = snapPoints.map((point) =>
-            Math.sqrt(
-              (event.pageX - point.x) ** 2 + (event.pageY - point.y) ** 2
-            )
-          )
-          const closest = [...distances].sort((a, b) =>
-            a > b ? 1 : a < b ? -1 : 0
-          )[0]
-          const closestIndex = distances.indexOf(closest)
+          // get the closest snappoint
+          const { x, y } = this.getClosestSnapPoint(event.pageX, event.pageY)
 
-          const newX = snapPoints[closestIndex].x
-          const newY = snapPoints[closestIndex].y
-
-          if (newX > this.screenWidth / 2) {
-            event.target.style.left = 'auto'
-            event.target.style.right = this.screenWidth - newX - w / 2 + 'px'
-          } else {
-            event.target.style.left = newX - w / 2 + 'px'
-            event.target.style.right = 'auto'
-          }
-
-          if (newY > this.screenHeight / 2) {
-            event.target.style.top = 'auto'
-            event.target.style.bottom = this.screenHeight - newY - h / 2 + 'px'
-          } else {
-            event.target.style.top = newY - h / 2 + 'px'
-            event.target.style.bottom = 'auto'
-          }
+          // update the breaky elements position
+          this.updatePosition(event.target, x, y, w, h)
         },
 
-        listeners: {
-          move: (event) => {
-            const elW = event.target.clientWidth
-            const elH = event.target.clientHeight
-            const newX = event.pageX
-            const newY = event.pageY
-
-            if (newX > this.screenWidth / 2) {
-              event.target.style.left = 'auto'
-              event.target.style.right =
-                this.screenWidth - newX - elW / 2 + 'px'
-            } else {
-              event.target.style.left = newX - elW / 2 + 'px'
-              event.target.style.right = 'auto'
-            }
-
-            if (newY > this.screenHeight / 2) {
-              event.target.style.top = 'auto'
-              event.target.style.bottom =
-                this.screenHeight - newY - elH / 2 + 'px'
-            } else {
-              event.target.style.top = newY - elH / 2 + 'px'
-              event.target.style.bottom = 'auto'
-            }
-          },
+        onmove: (event) => {
+          // update the elements position based on its current size.
+          // the size may have changed if the element has been extended before this method is called.
+          // this matters if we want the element to be dragged from the center
+          this.updatePosition(
+            event.target,
+            event.pageX,
+            event.pageY,
+            event.target.clientWidth,
+            event.target.clientHeight
+          )
         },
       })
     },
