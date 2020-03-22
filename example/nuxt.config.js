@@ -44,6 +44,11 @@ module.exports = {
     exposeConfig: true,
   },
   purgeCSS: {
-    content: [resolve(__dirname, '../lib/*'), resolve(__dirname, 'pages/*')],
+    content: [
+      resolve(__dirname, '../lib/**/*.scss'),
+      resolve(__dirname, '../lib/**/*.js'),
+      resolve(__dirname, '../lib/**/*.vue'),
+      resolve(__dirname, 'pages/**/*'),
+    ],
   },
 }
