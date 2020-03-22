@@ -80,7 +80,7 @@
 import throttle from 'lodash/throttle'
 import interact from 'interactjs'
 import TransitionExpand from './TransitionExpand'
-import { theme } from '~/tailwind.config'
+import { theme } from '~tailwind.config'
 
 export default {
   components: {
