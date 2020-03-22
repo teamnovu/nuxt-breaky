@@ -36,7 +36,7 @@
     </TransitionExpand>
 
     <div
-      class="current-breakpoint transition duration-300 text-center border-2 border-transparent py-2 px-4 rounded-full flex items-center justify-between"
+      class="current-breakpoint transition duration-300 text-center border-2 border-transparent py-2 px-4 rounded-full flex items-center justify-around"
       :class="{ 'border-opacity-30': !expanded }"
     >
       <!-- Desktop -->
@@ -393,7 +393,7 @@ export default {
 }
 
 .card {
-  min-width: 160px;
+  min-width: 170px;
   border-radius: 1.75rem;
   animation: fadeIn 0.25s forwards;
 
