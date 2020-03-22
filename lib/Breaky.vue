@@ -351,9 +351,19 @@ export default {
 .card {
   min-width: 160px;
   border-radius: 1.75rem;
+  animation: fadeIn 0.25s forwards;
 
   touch-action: none;
   user-select: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .border-opacity-30 {
