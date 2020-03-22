@@ -40,38 +40,7 @@
         class="current-breakpoint transition duration-300 text-center border-2 border-transparent py-2 px-4 rounded-full flex items-center justify-around"
         :class="{ 'border-opacity-30': !expanded }"
       >
-        <!-- Desktop -->
-        <svg
-          v-show="screenWidth > 1024"
-          aria-hidden="true"
-          focusable="false"
-          data-icon="desktop"
-          class="h-4 mr-3 fill-current"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 576 512"
-        >
-          <path
-            d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"
-          />
-        </svg>
-        <!-- END Desktop -->
-        <!-- Mobile -->
-        <svg
-          v-show="screenWidth <= 1024"
-          aria-hidden="true"
-          focusable="false"
-          data-icon="mobile-alt"
-          class="h-4 mr-3 fill-current"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 320 512"
-        >
-          <path
-            d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
-          />
-        </svg>
-        <!-- END Mobile -->
+        <CurrentScreenIcon :screen-width="screenWidth" />
         {{ currentBreakpoint }} - {{ screenWidth }}px
       </div>
     </div>
@@ -82,11 +51,13 @@
 import throttle from 'lodash/throttle'
 import interact from 'interactjs'
 import TransitionExpand from './TransitionExpand'
+import CurrentScreenIcon from './CurrentScreenIcon'
 import { theme } from '~tailwind.config'
 
 export default {
   components: {
     TransitionExpand,
+    CurrentScreenIcon,
   },
 
   props: {
@@ -169,7 +140,7 @@ export default {
       // check if the screen is smaller than the smallest
       // defined screen in the tailwind config
       if (this.foundBreakpoint === 0) {
-        return `smaller than ${this.breakpoints[this.sortedBreakpoints[0]]}`
+        return `< ${this.breakpoints[this.sortedBreakpoints[0]]}`
       }
 
       // when no breakpoint has been found take the highest
