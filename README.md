@@ -19,9 +19,9 @@ breaky helps you to develop your responsive designs faster. It reads your define
 
 The plugin will only be loaded during development mode and does not influence your production build.
 
-![Demo GIF of window resizing](./example/assets/img/resizing.gif 'Breakpoint indicator')
-![Demo GIF of dragging](./example/assets/img/dragging.gif 'Breakpoint indicator')
-![Demo GIF of toggling dark mode](./example/assets/img/toggle-dark-mode.gif 'Breakpoint indicator')
+![Demo GIF of window resizing](./example/assets/img/resizing.gif 'Resizing Browser Window')
+![Demo GIF of dragging](./example/assets/img/dragging.gif 'Dragging Card to Corners')
+![Demo GIF of toggling dark mode](./example/assets/img/toggle-dark-mode.gif 'Toggling between Dark and Light Mode')
 
 ## Setup
 
@@ -67,12 +67,12 @@ yarn add --dev nuxt-breaky # or npm install --save-dev nuxt-breaky
 
 ## Usage
 
-The breaky module automatically adds the breaky plugin when run in `development` mode.
+The breaky module automatically adds the breaky plugin when in `development` mode.
 No need to register or include it anywhere else.
 
 ### Configuration
 
-You can add options to the breaky using both the module options and the Nuxt config way.
+You can pass options to the breaky using both the module options and the Nuxt config way.
 
 ```js
 {
