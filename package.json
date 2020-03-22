@@ -31,7 +31,9 @@
   "dependencies": {
     "@nuxtjs/tailwindcss": "^1.4.0",
     "interactjs": "^1.9.7",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2"
   },
   "devDependencies": {
     "@babel/core": "latest",
@@ -47,10 +49,8 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "jest": "latest",
-    "node-sass": "^4.13.1",
     "nuxt-edge": "latest",
     "prettier": "^1.19.1",
-    "sass-loader": "^8.0.2",
     "standard-version": "latest"
   },
   "resolutions": {
