@@ -15,11 +15,13 @@
 
 [DEMO](https://teamnovu.github.io/nuxt-breaky/)
 
-This package always shows you which one of tailwinds breakpoints is currently active and lets you check the breakpoints without leaving the browser.
+breaky helps you to develop your responsive designs faster. It reads your defined breakpoints within your Tailwind Config and shows the current active breakpoint based on your browser window width.
 
 The plugin is only added when in development mode and does not influence your production build.
 
-![Screenshot of the breakpoint indicator](./example/assets/img/resize-demo.gif 'Breakpoint indicator')
+![Demo GIF of window resizing](./example/assets/img/resizing.gif 'Breakpoint indicator')
+![Demo GIF of dragging](./example/assets/img/dragging.gif 'Breakpoint indicator')
+![Demo GIF of toggling dark mode](./example/assets/img/toggle-dark-mode.gif 'Breakpoint indicator')
 
 ## Setup
 
@@ -43,7 +45,10 @@ yarn add --dev nuxt-breaky # or npm install --save-dev nuxt-breaky
     [
       'nuxt-breaky',
       {
-        /* module options */
+        enabled: true,
+        enableInProd: false,
+        colorScheme: 'auto',
+        position: 'bottomRight'
       }
     ]
   ]
@@ -83,11 +88,12 @@ You can add options to the breaky using both the module options and the Nuxt con
 
 #### Available Options
 
-| Option       | Type    | Default       | Description                                                                    |
-| ------------ | ------- | ------------- | ------------------------------------------------------------------------------ |
-| `enabled`      | `Boolean` | `true`          | Enable/Disable breaky                                                          |
-| `enableInProd` | `Boolean` | `false`         | Enable breaky in production (overrides the enabled option)                     |
-| `position`     | `String`  | `'bottomRight'` | Breakys starting position (`'topLeft'`\|`'topRight'`\|`'bottomLeft'`\|`'bottomRight'`) |
+| Option         | Type      | Default         | Options                                                          | Description                                                |
+| -------------- | --------- | --------------- | ---------------------------------------------------------------- | ---------------------------------------------------------- |
+| `enabled`      | `Boolean` | `true`          | `true` \| `false`                                                | Enable/Disable breaky                                      |
+| `enableInProd` | `Boolean` | `false`         | `true` \| `false`                                                | Enable breaky in production (overrides the enabled option) |
+| `colorScheme`  | `String`  | `auto`          | `'auto'` \| `'light'` \| `'dark'`                                | Switch between different color schemes                     |
+| `position`     | `String`  | `'bottomRight'` | `'topLeft'` \| `'topRight'` \| `'bottomLeft'` \| `'bottomRight'` | Breakys starting position                                  |
 
 ## Development
 
