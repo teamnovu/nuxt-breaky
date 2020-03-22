@@ -85,7 +85,7 @@ export default {
   props: {
     startingPosition: {
       type: String,
-      default: 'bottom-right',
+      default: 'bottomRight',
     },
   },
 
@@ -149,7 +149,8 @@ export default {
     },
 
     /**
-     * Get the current active breakpoint
+     * Evaluate the current breakpoint based on the
+     * browser screen width
      */
     currentBreakpoint() {
       // check if the screen is smaller than the smallest
@@ -165,21 +166,6 @@ export default {
 
       // set the found breakpoint
       return this.sortedBreakpoints[this.foundBreakpoint - 1]
-    },
-
-    /**
-     * Get the starting position converted from snake to camel case
-     */
-    startingPositionCamelCase() {
-      const snakeToCamel = (str) =>
-        str.replace(/([-_][a-z])/g, (group) =>
-          group
-            .toUpperCase()
-            .replace('-', '')
-            .replace('_', '')
-        )
-
-      return snakeToCamel(this.startingPosition)
     },
 
     /**
@@ -227,19 +213,32 @@ export default {
       window.removeEventListener('resize', this.resizeHandler)
     })
 
+    this.applyStartingPosition()
     this.initInteract()
   },
 
   methods: {
     /**
-     *  Evaluate the current breakpoint based on the
-     *  browser screen width
+     *  Apply the starting position passed through as a prop
+     */
+    applyStartingPosition() {
+      if (typeof this[this.startingPosition] === 'object') {
+        // get the elements size
+        const w = this.$refs.breaky.clientWidth
+        const h = this.$refs.breaky.clientHeight
+        // get target coordinates
+        const { x, y } = this[this.startingPosition]
+
+        this.updatePosition(this.$refs.breaky, x, y, w, h)
+      }
+    },
+
+    /**
+     *  Update the reactive property of screen width and height
      */
     resizeHandler: throttle(function() {
       this.screenWidth = window.innerWidth
       this.screenHeight = window.innerHeight
-
-      this.initInteract()
     }, 100),
 
     /**
