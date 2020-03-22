@@ -1,6 +1,17 @@
 const { resolve } = require('path')
 
+const routerBase =
+  process.env.DEPLOY_ENV === 'GH_PAGES'
+    ? {
+        router: {
+          base: '/<repository-name>/',
+        },
+      }
+    : {}
+
 module.exports = {
+  ...routerBase,
+
   head: {
     meta: [
       { charset: 'utf-8' },
@@ -10,6 +21,10 @@ module.exports = {
   rootDir: resolve(__dirname, '..'),
   buildDir: resolve(__dirname, '.nuxt'),
   srcDir: __dirname,
+  generate: {
+    devtools: true,
+    dir: resolve(__dirname, 'dist'),
+  },
   render: {
     resourceHints: false,
   },
@@ -19,10 +34,15 @@ module.exports = {
   ],
   breaky: {
     enabled: true,
-    enableInProd: false,
+    enableInProd: process.env.DEPLOY_ENV === 'GH_PAGES',
     position: 'bottomRight',
   },
   tailwindcss: {
+    configPath: './tailwind.config.js',
+    cssPath: './assets/css/tailwind.css',
     exposeConfig: true,
+  },
+  purgeCSS: {
+    content: [resolve(__dirname, '../lib/*'), resolve(__dirname, 'pages/*')],
   },
 }
