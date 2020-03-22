@@ -2,11 +2,14 @@
   <div
     v-show="!TOGGLE_ME_TO_HIDE_BREAKY"
     ref="breaky"
-    class="card text-xs fixed flex bg-indigo-500 p-2 text-white z-50 shadow cursor-pointer antialiased font-bold tracking-wide transition-all duration-100"
-    :class="{
-      'flex-col-reverse': currentPosition.includes('top'),
-      'flex-col': currentPosition.includes('bottom'),
-    }"
+    class="card text-xs fixed flex bg-indigo-500 p-2 text-white z-50 shadow cursor-pointer antialiased font-bold tracking-wide"
+    :class="[
+      draggableTransitionClasses,
+      {
+        'flex-col-reverse': currentPosition.includes('top'),
+        'flex-col': currentPosition.includes('bottom'),
+      },
+    ]"
     @click.stop="!noExpand ? (expanded = !expanded) : null"
   >
     <TransitionExpand>
@@ -102,6 +105,7 @@ export default {
       screenWidth: window.innerWidth,
       screenHeight: window.innerHeight,
       currentPosition: this.startingPosition,
+      draggableTransitionClasses: ['transition-all', 'duration-300'],
     }
   },
 
@@ -310,13 +314,13 @@ export default {
         onstart: (event) => {
           // prevent breaky from expanding and transitioning while dragging
           this.noExpand = true
-          event.target.classList.remove('transition-all', 'duration-100')
+          event.target.classList.remove(...this.draggableTransitionClasses)
         },
 
         onend: (event) => {
           // allow breaky to expand and transition again
           setTimeout(() => (this.noExpand = false), 0)
-          event.target.classList.add('transition-all', 'duration-100')
+          event.target.classList.add(...this.draggableTransitionClasses)
 
           // get the closest snappoint
           const { x, y, name } = this.getClosestSnapPoint(
