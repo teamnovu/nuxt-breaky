@@ -81,10 +81,11 @@ You can add options to the breaky using both the module options and the Nuxt con
 
 Available options are:
 
-| Option       | Type    | Default | Description                                                |
-| ------------ | ------- | ------- | ---------------------------------------------------------- |
-| enabled      | Boolean | true    | Enable/Disable breaky                                      |
-| enableInProd | Boolean | false   | Enable breaky in production (overrides the enabled option) |
+| Option       | Type    | Default       | Description                                                                    |
+| ------------ | ------- | ------------- | ------------------------------------------------------------------------------ |
+| `enabled`      | `Boolean` | `true`          | Enable/Disable breaky                                                          |
+| `enableInProd` | `Boolean` | `false`         | Enable breaky in production (overrides the enabled option)                     |
+| `position`     | `String`  | `'bottomRight'` | Breakys starting position (`'topLeft'`\|`'topRight'`\|`'bottomLeft'`\|`'bottomRight'`) |
 
 ## Development
 
