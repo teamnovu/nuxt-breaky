@@ -1,77 +1,79 @@
 <template>
-  <div
-    v-show="!TOGGLE_ME_TO_HIDE_BREAKY"
-    ref="breaky"
-    class="card text-xs fixed flex p-2 z-50 shadow cursor-pointer antialiased font-bold tracking-wide"
-    :class="[
-      draggableTransitionClasses,
-      {
-        'flex-col-reverse': currentPosition.includes('top'),
-        'flex-col': currentPosition.includes('bottom'),
-      },
-    ]"
-    @click.stop="!noExpand ? (expanded = !expanded) : null"
-  >
-    <TransitionExpand>
-      <div v-show="expanded" class="pt-1 pb-2 relative">
-        <!-- Selected Panel -->
-        <span
-          v-show="foundBreakpoint !== 0"
-          class="absolute h-selected w-full bg-selected rounded-lg ease-out transition-transform duration-200"
-          :style="{ transform: `translateY(calc(100% * ${selected}))` }"
-        />
-        <!-- END Selected Panel -->
-        <ul class="relative">
-          <li
-            v-for="(bp, name, index) in breakpoints"
-            :key="index"
-            class="flex justify-between py-2 px-4"
-            :class="{ 'opacity-50': selected !== index }"
-          >
-            <span>{{ name }} </span>
-            <span class="ml-5">{{ bp }}</span>
-          </li>
-        </ul>
-      </div>
-    </TransitionExpand>
-
+  <div :class="`color-scheme-${colorScheme}`">
     <div
-      class="current-breakpoint transition duration-300 text-center border-2 border-transparent py-2 px-4 rounded-full flex items-center justify-around"
-      :class="{ 'border-opacity-30': !expanded }"
+      v-show="!TOGGLE_ME_TO_HIDE_BREAKY"
+      ref="breaky"
+      class="card text-xs fixed flex p-2 z-50 shadow cursor-pointer antialiased font-bold tracking-wide"
+      :class="[
+        draggableTransitionClasses,
+        {
+          'flex-col-reverse': currentPosition.includes('top'),
+          'flex-col': currentPosition.includes('bottom'),
+        },
+      ]"
+      @click.stop="!noExpand ? (expanded = !expanded) : null"
     >
-      <!-- Desktop -->
-      <svg
-        v-show="screenWidth > 1024"
-        aria-hidden="true"
-        focusable="false"
-        data-icon="desktop"
-        class="h-4 mr-3 fill-current"
-        role="img"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 576 512"
+      <TransitionExpand>
+        <div v-show="expanded" class="pt-1 pb-2 relative">
+          <!-- Selected Panel -->
+          <span
+            v-show="foundBreakpoint !== 0"
+            class="absolute h-selected w-full bg-selected rounded-lg ease-out transition-transform duration-200"
+            :style="{ transform: `translateY(calc(100% * ${selected}))` }"
+          />
+          <!-- END Selected Panel -->
+          <ul class="relative">
+            <li
+              v-for="(bp, name, index) in breakpoints"
+              :key="index"
+              class="flex justify-between py-2 px-4"
+              :class="{ 'opacity-50': selected !== index }"
+            >
+              <span>{{ name }} </span>
+              <span class="ml-5">{{ bp }}</span>
+            </li>
+          </ul>
+        </div>
+      </TransitionExpand>
+
+      <div
+        class="current-breakpoint transition duration-300 text-center border-2 border-transparent py-2 px-4 rounded-full flex items-center justify-around"
+        :class="{ 'border-opacity-30': !expanded }"
       >
-        <path
-          d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"
-        />
-      </svg>
-      <!-- END Desktop -->
-      <!-- Mobile -->
-      <svg
-        v-show="screenWidth <= 1024"
-        aria-hidden="true"
-        focusable="false"
-        data-icon="mobile-alt"
-        class="h-4 mr-3 fill-current"
-        role="img"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
-      >
-        <path
-          d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
-        />
-      </svg>
-      <!-- END Mobile -->
-      {{ currentBreakpoint }} - {{ screenWidth }}px
+        <!-- Desktop -->
+        <svg
+          v-show="screenWidth > 1024"
+          aria-hidden="true"
+          focusable="false"
+          data-icon="desktop"
+          class="h-4 mr-3 fill-current"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 576 512"
+        >
+          <path
+            d="M528 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h192l-16 48h-72c-13.3 0-24 10.7-24 24s10.7 24 24 24h272c13.3 0 24-10.7 24-24s-10.7-24-24-24h-72l-16-48h192c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h448v288z"
+          />
+        </svg>
+        <!-- END Desktop -->
+        <!-- Mobile -->
+        <svg
+          v-show="screenWidth <= 1024"
+          aria-hidden="true"
+          focusable="false"
+          data-icon="mobile-alt"
+          class="h-4 mr-3 fill-current"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path
+            d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"
+          />
+        </svg>
+        <!-- END Mobile -->
+        {{ currentBreakpoint }} - {{ screenWidth }}px
+      </div>
     </div>
   </div>
 </template>
@@ -91,6 +93,10 @@ export default {
     startingPosition: {
       type: String,
       default: 'bottomRight',
+    },
+    colorScheme: {
+      type: String,
+      default: 'auto',
     },
   },
 
@@ -349,47 +355,27 @@ export default {
 }
 </script>
 
-<style scoped>
-/* Light mode */
-@media (prefers-color-scheme: light) {
-  .card {
-    background-color: rgba(255, 255, 255, 0.7);
+<style scoped lang="scss">
+@import './assets/scss/mixins/color-scheme.scss';
 
-    @apply text-black;
+.color-scheme-auto {
+  /* Light mode */
+  @media (prefers-color-scheme: light) {
+    @include light-card;
   }
 
-  .border-opacity-30 {
-    border-color: rgba(0, 0, 0, 0.1);
-  }
-
-  .bg-selected {
-    background-color: rgba(0, 0, 0, 0.15);
-  }
-
-  svg {
-    color: rgba(0, 0, 0, 0.4);
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    @include dark-card;
   }
 }
 
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  .card {
-    background-color: rgba(0, 0, 0, 0.8);
+.color-scheme-light {
+  @include light-card;
+}
 
-    @apply text-white;
-  }
-
-  .border-opacity-30 {
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-
-  .bg-selected {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-
-  svg {
-    color: rgba(255, 255, 255, 0.3);
-  }
+.color-scheme-dark {
+  @include dark-card;
 }
 
 .card {
