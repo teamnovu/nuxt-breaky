@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import '../.vue/assets/css/tailwind-built.css'
+import '../assets/css/tailwind.css'
 import resolveConfig from 'tailwindcss/resolveConfig'
 import Breaky from '../../lib/plugin-vue'
 import twd from '../tailwind.config'
