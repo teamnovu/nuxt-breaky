@@ -23,6 +23,10 @@ The plugin will only be loaded during development mode and does not interfere wi
 ![Demo GIF of dragging](./example/assets/img/dragging.gif 'Dragging Card to Corners')
 ![Demo GIF of toggling dark mode](./example/assets/img/toggle-dark-mode.gif 'Toggling between Dark and Light Mode')
 
+## Requirements
+
+Make sure `tailwindcss-module: ^1.4.0` (or higher) is installed.
+
 ## Setup
 
 1. Add `nuxt-breaky` as a dev-dependency to your project
@@ -92,12 +96,12 @@ You can pass options to the breaky using both the module options and the Nuxt co
 
 #### Available Options
 
-| Option         | Type      | Default         | Options                                                          | Description                                                |
-| -------------- | --------- | --------------- | ---------------------------------------------------------------- | ---------------------------------------------------------- |
-| `enabled`      | `Boolean` | `true`          | `true` \| `false`                                                | Enable/Disable breaky                                      |
+| Option         | Type      | Default         | Options                                                          | Description                                                                                                                                                                                                                   |
+| -------------- | --------- | --------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `enabled`      | `Boolean` | `true`          | `true` \| `false`                                                | Enable/Disable breaky                                                                                                                                                                                                         |
 | `enableInProd` | `Boolean` | `false`         | `true` \| `false`                                                | Enable breaky in production (overrides the enabled option; Please be aware this adds ~19.5KB (~3.5KB) to the client bundle size. [More Info](https://github.com/nuxt-community/tailwindcss-module#referencing-in-javascript)) |
-| `colorScheme`  | `String`  | `auto`          | `'auto'` \| `'light'` \| `'dark'`                                | Switch between different color schemes                     |
-| `position`     | `String`  | `'bottomRight'` | `'topLeft'` \| `'topRight'` \| `'bottomLeft'` \| `'bottomRight'` | Breakys starting position                                  |
+| `colorScheme`  | `String`  | `auto`          | `'auto'` \| `'light'` \| `'dark'`                                | Switch between different color schemes                                                                                                                                                                                        |
+| `position`     | `String`  | `'bottomRight'` | `'topLeft'` \| `'topRight'` \| `'bottomLeft'` \| `'bottomRight'` | Breakys starting position                                                                                                                                                                                                     |
 
 ## Development
 
