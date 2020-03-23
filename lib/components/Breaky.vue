@@ -52,7 +52,6 @@ import throttle from 'lodash/throttle'
 import interact from 'interactjs'
 import TransitionExpand from './TransitionExpand'
 import CurrentScreenIcon from './CurrentScreenIcon'
-import { theme } from '~tailwind.config'
 
 export default {
   components: {
@@ -61,6 +60,10 @@ export default {
   },
 
   props: {
+    breakpoints: {
+      type: Object,
+      required: true,
+    },
     startingPosition: {
       type: String,
       default: 'bottomRight',
@@ -74,7 +77,6 @@ export default {
   data() {
     return {
       TOGGLE_ME_TO_HIDE_BREAKY: false,
-      breakpoints: theme.screens,
       expanded: false,
       noExpand: false,
       screenWidth: window.innerWidth,
