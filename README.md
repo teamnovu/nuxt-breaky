@@ -15,7 +15,7 @@
 
 [DEMO](https://teamnovu.github.io/nuxt-breaky/)
 
-breaky helps you to create your responsive designs faster. It extends the awesome [tailwindcss-module](https://github.com/nuxt-community/tailwindcss-module). breaky reads your defined breakpoints within your Tailwind Config and shows the current active breakpoint based on your browser window width.
+breaky helps you create your responsive designs faster. It extends the awesome [tailwindcss-module](https://github.com/nuxt-community/tailwindcss-module). breaky reads your defined breakpoints within your tailwind config and shows the currently active breakpoint based on your browser window width.
 
 The plugin will only be loaded during development mode and does not interfere with your production build.
 
@@ -35,7 +35,7 @@ yarn add nuxt-breaky --dev
 
 2. Add `nuxt-breaky` to the `buildModules` section of `nuxt.config.js`
 
-> Use the `modules` section if you are using Nuxt older than `v2.9`. [More Info](https://nuxtjs.org/guide/modules/#build-only-modules)
+NOTE: Use the `modules` section if you are using Nuxt older than `v2.9`. [More Info](https://nuxtjs.org/guide/modules/#build-only-modules)
 
 ```js
 {
@@ -67,7 +67,7 @@ yarn add nuxt-breaky --dev
 }
 ```
 
-NOTE: Please be aware this adds ~19.5KB (~3.5KB) to the client bundle size.
+NOTE: Please be aware this adds ~19.5KB (~3.5KB) to the client bundle size when you are in development mode. [More Info](https://github.com/nuxt-community/tailwindcss-module#referencing-in-javascript)
 
 ## Usage
 
@@ -95,7 +95,7 @@ You can pass options to the breaky using both the module options and the Nuxt co
 | Option         | Type      | Default         | Options                                                          | Description                                                |
 | -------------- | --------- | --------------- | ---------------------------------------------------------------- | ---------------------------------------------------------- |
 | `enabled`      | `Boolean` | `true`          | `true` \| `false`                                                | Enable/Disable breaky                                      |
-| `enableInProd` | `Boolean` | `false`         | `true` \| `false`                                                | Enable breaky in production (overrides the enabled option) |
+| `enableInProd` | `Boolean` | `false`         | `true` \| `false`                                                | Enable breaky in production (overrides the enabled option; Please be aware this adds ~19.5KB (~3.5KB) to the client bundle size. [More Info](https://github.com/nuxt-community/tailwindcss-module#referencing-in-javascript)) |
 | `colorScheme`  | `String`  | `auto`          | `'auto'` \| `'light'` \| `'dark'`                                | Switch between different color schemes                     |
 | `position`     | `String`  | `'bottomRight'` | `'topLeft'` \| `'topRight'` \| `'bottomLeft'` \| `'bottomRight'` | Breakys starting position                                  |
 
