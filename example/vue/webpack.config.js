@@ -5,16 +5,6 @@ module.exports = {
   entry: './main.js',
   resolve: {
     extensions: ['.js', '.json', '.vue'],
-    modules: [
-      'node_modules',
-      '/Users/tom/Projects/nuxt-breaky/node_modules/nuxt-edge/bin/node_modules',
-      '/Users/tom/Projects/nuxt-breaky/node_modules/nuxt-edge/node_modules',
-      '/Users/tom/Projects/nuxt-breaky/node_modules',
-      '/Users/tom/Projects/node_modules',
-      '/Users/tom/node_modules',
-      '/Users/node_modules',
-      '/node_modules',
-    ],
   },
   module: {
     rules: [
