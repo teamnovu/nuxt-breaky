@@ -29,6 +29,8 @@ Make sure `tailwindcss-module: ^1.4.0` (or higher) is installed.
 
 ## Setup
 
+### Nuxt
+
 1. Add `nuxt-breaky` as a dev-dependency to your project
 
 ```bash
@@ -73,12 +75,43 @@ NOTE: Use the `modules` section if you are using Nuxt older than `v2.9`. [More I
 
 NOTE: Please be aware this adds ~19.5KB (~3.5KB) to the client bundle size when you are in development mode. [More Info](https://github.com/nuxt-community/tailwindcss-module#referencing-in-javascript)
 
+### Vue
+
+1. Add `nuxt-breaky` as a dev-dependency to your project
+
+```bash
+yarn add nuxt-breaky --dev
+
+# or npm install nuxt-breaky --save-dev
+```
+
+2. Add the following code to your `main.js`
+
+```js
+import resolveConfig from 'tailwindcss/resolveConfig' // used to merge tailwindcss default config with your custom config
+import Breaky from 'nuxt-breaky/lib/plugin-vue'
+
+Vue.use(Breaky, {
+  tailwindConfig: resolveConfig(require('./tailwind.config')), // Required
+
+  // Additional options
+  enabled: true,
+  enableInProd: process.env.DEPLOY_ENV === 'GH_PAGES',
+  position: 'bottomRight',
+  colorScheme: 'auto',
+})
+```
+
+NOTE: Please be aware this adds ~19.5KB (~3.5KB) to the bundle size when you are in development mode.
+
 ## Usage
 
 The breaky module automatically adds the breaky plugin when in `development` mode.
 No need to register or include it anywhere else.
 
 ### Configuration
+
+#### Nuxt
 
 You can pass options to the breaky using both the module options and the Nuxt config way.
 
@@ -92,6 +125,14 @@ You can pass options to the breaky using both the module options and the Nuxt co
     /* module options */
   }
 }
+```
+
+#### Vue
+
+```js
+Vue.use(Breaky, {
+  /* plugin options */
+})
 ```
 
 #### Available Options
