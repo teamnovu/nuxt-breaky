@@ -17,7 +17,9 @@
   ],
   "main": "lib/module-nuxt.js",
   "scripts": {
-    "dev": "nuxt example",
+    "dev": "yarn dev:nuxt",
+    "dev:nuxt": "nuxt example",
+    "dev:vue": "tailwindcss build example/assets/css/tailwind.css -o example/.vue/assets/css/tailwind-built.css -c example/tailwind.config.js && vue-cli-service serve example/vue/main.js",
     "lint": "eslint --ext .js,.vue example lib test",
     "release": "yarn test && yarn update:gh-pages && standard-version && git push --follow-tags && npm publish",
     "release:patch": "yarn test && yarn update:gh-pages && standard-version --release-as patch && git push --follow-tags && npm publish",
@@ -42,6 +44,7 @@
     "@commitlint/config-conventional": "latest",
     "@nuxtjs/eslint-config": "latest",
     "@nuxtjs/module-test-utils": "latest",
+    "@vue/cli-service": "^4.2.3",
     "babel-eslint": "latest",
     "babel-jest": "latest",
     "codecov": "latest",
