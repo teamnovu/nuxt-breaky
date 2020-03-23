@@ -18,16 +18,16 @@
   "main": "lib/module-nuxt.js",
   "scripts": {
     "dev": "yarn dev:nuxt",
-    "dev:nuxt": "nuxt example",
+    "dev:nuxt": "nuxt example/nuxt",
     "dev:vue": "webpack-dev-server --mode development --config example/vue/webpack.config.js --port 3000 --watch example/vue/main.js",
-    "lint": "eslint --ext .js,.vue example lib test",
+    "lint": "eslint --ext .js,.vue example/nuxt lib test",
     "release": "yarn test && yarn update:gh-pages && standard-version && git push --follow-tags && npm publish",
     "release:patch": "yarn test && yarn update:gh-pages && standard-version --release-as patch && git push --follow-tags && npm publish",
     "release:minor": "yarn test && yarn update:gh-pages && standard-version --release-as minor && git push --follow-tags && npm publish",
     "release:major": "yarn test && yarn update:gh-pages && standard-version --release-as major && git push --follow-tags && npm publish",
     "test": "yarn lint && jest",
     "update:gh-pages": "yarn generate:gh-pages && git add -A && git diff-index --quiet HEAD || git commit -m \"update gh-pages\" && git push && yarn deploy:gh-pages",
-    "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate example",
+    "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate example/nuxt",
     "deploy:gh-pages": "git subtree push --prefix example/dist origin gh-pages"
   },
   "dependencies": {
