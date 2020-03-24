@@ -9,7 +9,7 @@
 
 > Show Tailwind CSS Breakpoints in Nuxtjs when using the [tailwindcss-module](https://github.com/nuxt-community/tailwindcss-module)
 
-<!-- [📖 **Release Notes**](./CHANGELOG.md) -->
+[📖 **Release Notes**](./CHANGELOG.md)
 
 ## Intro
 
@@ -111,7 +111,7 @@ You can pass options to the breaky using both the module options and the Nuxt co
 
 ### Release
 
-1. `yarn release:patch` (`minor` or `major`)
+1. `yarn release`
 2. `npm publish`
 
 ## License

@@ -13,17 +13,18 @@ module.exports = {
   ...routerBase,
 
   head: {
+    title: 'breaky example nuxt',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
   },
-  rootDir: resolve(__dirname, '..'),
-  buildDir: resolve(__dirname, '.nuxt'),
+  rootDir: resolve(__dirname),
+  buildDir: resolve(__dirname, './.nuxt'),
   srcDir: __dirname,
   generate: {
     devtools: true,
-    dir: resolve(__dirname, 'dist'),
+    dir: resolve(__dirname, './dist'),
   },
   render: {
     resourceHints: false,
@@ -44,11 +45,6 @@ module.exports = {
     exposeConfig: true,
   },
   purgeCSS: {
-    content: [
-      resolve(__dirname, '../lib/**/*.scss'),
-      resolve(__dirname, '../lib/**/*.js'),
-      resolve(__dirname, '../lib/**/*.vue'),
-      resolve(__dirname, 'pages/**/*'),
-    ],
+    enabled: false,
   },
 }

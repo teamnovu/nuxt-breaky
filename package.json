@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-breaky",
+  "name": "@teamnovu/nuxt-breaky",
   "version": "1.1.2",
   "description": "Show Tailwind CSS Breakpoints in Nuxtjs",
   "repository": "teamnovu/nuxt-breaky",
@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^1.4.0",
+    "@teamnovu/vue-breaky-core": "^0.1.0",
     "interactjs": "^1.9.7",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
@@ -48,6 +49,7 @@
     "eslint": "latest",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
     "jest": "latest",
     "nuxt-edge": "latest",
     "prettier": "^1.19.1",
