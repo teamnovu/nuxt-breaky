@@ -9,7 +9,7 @@
 
 > Show Tailwind CSS Breakpoints in Nuxtjs when using the [tailwindcss-module](https://github.com/nuxt-community/tailwindcss-module)
 
-<!-- [📖 **Release Notes**](./CHANGELOG.md) -->
+[📖 **Release Notes**](./CHANGELOG.md)
 
 ## Intro
 
