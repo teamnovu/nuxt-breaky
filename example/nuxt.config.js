@@ -19,19 +19,19 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
   },
-  rootDir: resolve(__dirname, '..'),
-  buildDir: resolve(__dirname, '../.nuxt'),
+  rootDir: resolve(__dirname),
+  buildDir: resolve(__dirname, './.nuxt'),
   srcDir: __dirname,
   generate: {
     devtools: true,
-    dir: resolve(__dirname, '../dist'),
+    dir: resolve(__dirname, './dist'),
   },
   render: {
     resourceHints: false,
   },
   modules: [
     { handler: require('@nuxtjs/tailwindcss') },
-    { handler: require('../../') },
+    { handler: require('../') },
   ],
   breaky: {
     enabled: true,
@@ -40,16 +40,11 @@ module.exports = {
     colorScheme: 'auto',
   },
   tailwindcss: {
-    configPath: '../tailwind.config.js',
-    cssPath: '../assets/css/tailwind.css',
+    configPath: './tailwind.config.js',
+    cssPath: './assets/css/tailwind.css',
     exposeConfig: true,
   },
   purgeCSS: {
-    content: [
-      resolve(__dirname, '../../lib/**/*.scss'),
-      resolve(__dirname, '../../lib/**/*.js'),
-      resolve(__dirname, '../../lib/**/*.vue'),
-      resolve(__dirname, 'pages/**/*'),
-    ],
+    enabled: false,
   },
 }

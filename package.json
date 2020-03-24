@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-breaky",
+  "name": "@teamnovu/nuxt-breaky",
   "version": "1.1.2",
   "description": "Show Tailwind CSS Breakpoints in Nuxtjs",
   "repository": "teamnovu/nuxt-breaky",
@@ -15,23 +15,22 @@
   "files": [
     "lib"
   ],
-  "main": "lib/module-nuxt.js",
+  "main": "lib/module.js",
   "scripts": {
-    "dev": "yarn dev:nuxt",
-    "dev:nuxt": "nuxt example/nuxt",
-    "dev:vue": "webpack-dev-server --mode development --config example/vue/webpack.config.js --port 3000 --watch example/vue/main.js",
-    "lint": "eslint --ext .js,.vue example/nuxt lib test",
+    "dev": "nuxt example",
+    "lint": "eslint --ext .js,.vue example lib test",
     "release": "yarn test && yarn update:gh-pages && standard-version && git push --follow-tags && npm publish",
     "release:patch": "yarn test && yarn update:gh-pages && standard-version --release-as patch && git push --follow-tags && npm publish",
     "release:minor": "yarn test && yarn update:gh-pages && standard-version --release-as minor && git push --follow-tags && npm publish",
     "release:major": "yarn test && yarn update:gh-pages && standard-version --release-as major && git push --follow-tags && npm publish",
     "test": "yarn lint && jest",
     "update:gh-pages": "yarn generate:gh-pages && git add -A && git diff-index --quiet HEAD || git commit -m \"update gh-pages\" && git push && yarn deploy:gh-pages",
-    "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate example/nuxt",
+    "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate example",
     "deploy:gh-pages": "git subtree push --prefix example/dist origin gh-pages"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^1.4.0",
+    "@teamnovu/vue-breaky-core": "^0.1.0",
     "interactjs": "^1.9.7",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
@@ -44,19 +43,17 @@
     "@commitlint/config-conventional": "latest",
     "@nuxtjs/eslint-config": "latest",
     "@nuxtjs/module-test-utils": "latest",
-    "@vue/cli-service": "^4.2.3",
     "babel-eslint": "latest",
     "babel-jest": "latest",
     "codecov": "latest",
     "eslint": "latest",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
     "jest": "latest",
     "nuxt-edge": "latest",
     "prettier": "^1.19.1",
-    "standard-version": "latest",
-    "style-loader": "^1.1.3",
-    "webpack-cli": "^3.3.11"
+    "standard-version": "latest"
   },
   "resolutions": {
     "minimist": "^1.2.5"
