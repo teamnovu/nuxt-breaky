@@ -29,15 +29,15 @@ Make sure `tailwindcss-module: ^1.4.0` (or higher) is installed.
 
 ## Setup
 
-1. Add `nuxt-breaky` as a dev-dependency to your project
+1. Add `@teamnovu/nuxt-breaky` as a dev-dependency to your project
 
 ```bash
-yarn add nuxt-breaky --dev
+yarn add @teamnovu/nuxt-breaky --dev
 
-# or npm install nuxt-breaky --save-dev
+# or npm install @teamnovu/nuxt-breaky --save-dev
 ```
 
-2. Add `nuxt-breaky` to the `buildModules` section of `nuxt.config.js`
+2. Add `@teamnovu/nuxt-breaky` to the `buildModules` section of `nuxt.config.js`
 
 NOTE: Use the `modules` section if you are using Nuxt older than `v2.9`. [More Info](https://nuxtjs.org/guide/modules/#build-only-modules)
 
@@ -45,11 +45,11 @@ NOTE: Use the `modules` section if you are using Nuxt older than `v2.9`. [More I
 {
   buildModules: [
     // Simple usage
-    'nuxt-breaky',
+    '@teamnovu/nuxt-breaky',
 
     // With options
     [
-      'nuxt-breaky',
+      '@teamnovu/nuxt-breaky',
       {
         enabled: true,
         enableInProd: false,
@@ -85,7 +85,7 @@ You can pass options to the breaky using both the module options and the Nuxt co
 ```js
 {
   buildModules: {
-    ['nuxt-breaky', { /* module options */ }]
+    ['@teamnovu/nuxt-breaky', { /* module options */ }]
   },
 
   breaky: {
