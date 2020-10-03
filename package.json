@@ -37,23 +37,23 @@
     "sass-loader": "^8.0.2"
   },
   "devDependencies": {
-    "@babel/core": "latest",
-    "@babel/preset-env": "latest",
-    "@commitlint/cli": "latest",
-    "@commitlint/config-conventional": "latest",
-    "@nuxtjs/eslint-config": "latest",
-    "@nuxtjs/module-test-utils": "latest",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/module-test-utils": "^1.6.3",
     "babel-eslint": "latest",
-    "babel-jest": "latest",
-    "codecov": "latest",
-    "eslint": "latest",
+    "babel-jest": "^26.3.0",
+    "codecov": "^3.7.2",
+    "eslint": "^7.10.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
-    "jest": "latest",
-    "nuxt-edge": "latest",
+    "jest": "^26.4.2",
+    "nuxt-edge": "^2.14.7-26694757.61e93d01",
     "prettier": "^1.19.1",
-    "standard-version": "latest"
+    "standard-version": "^9.0.0"
   },
   "resolutions": {
     "minimist": "^1.2.5"
