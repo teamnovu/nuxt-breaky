@@ -123,7 +123,7 @@ Copyright (c) teamnovu
 <!-- Badges -->
 
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-breaky/latest.svg?style=flat-square
-[npm-version-href]: https://github.com/teamnovu/nuxt-breaky/releases
+[npm-version-href]: https://www.npmjs.com/package/@teamnovu/nuxt-breaky
 [npm-downloads-src]: https://img.shields.io/npm/dt/nuxt-breaky.svg?style=flat-square
 [npm-downloads-href]: https://github.com/teamnovu/nuxt-breaky/releases
 [circle-ci-src]: https://img.shields.io/circleci/project/github/teamnovu/nuxt-breaky.svg?style=flat-square
