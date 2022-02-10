@@ -33,7 +33,7 @@
     "@teamnovu/vue-breaky-core": "^0.1.0",
     "interactjs": "^1.9.7",
     "lodash": "^4.17.15",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.2"
   },
   "devDependencies": {
