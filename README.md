@@ -1,3 +1,6 @@
+> **Warning**
+> This package is no longer supported.
+
 # nuxt-breaky
 
 [![npm version][npm-version-src]][npm-version-href]
